@@ -15,14 +15,17 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.router',
+    'stormpath',
+    'stormpath.templates'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        templateUrl: 'views/login.html',
+        controller: 'LoginCntrl',
+        controllerAs: 'login'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -34,7 +37,18 @@ angular
         controller: 'RegisterCtrl',
         controllerAs: 'register'
       })
+      .when('/dashboard',{
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl',
+        controllerAs: 'dashboard'
+      })
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .run(function($stormpath){
+    $stormpath.uiRouter({
+      loginState: 'login',
+      defaultPostLoginState: 'main'
+    });
   });
