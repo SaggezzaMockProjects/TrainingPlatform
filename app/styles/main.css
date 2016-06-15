@@ -44,13 +44,19 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
-  background-image: images/saggezzainstitue.png;
   border-bottom: 1px solid #e5e5e5;
-  background-size: cover;
 }
 .jumbotron .btn {
   font-size: 21px;
   padding: 14px 24px;
+}
+
+.jumbotronImage{
+  background-image: url('../images/saggezzainstitute.png');
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 /* Supporting marketing content */
