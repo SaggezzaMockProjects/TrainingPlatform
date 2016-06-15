@@ -44,7 +44,9 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
+  background-image: images/saggezzainstitue.png;
   border-bottom: 1px solid #e5e5e5;
+  background-size: cover;
 }
 .jumbotron .btn {
   font-size: 21px;
