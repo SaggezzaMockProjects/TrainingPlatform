@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Saggezza Institute</title>
+		<link rel="stylesheet" type="text/css" href="css/quiz.css">
+	</head>
+		<body ng-app="quiz">
+
+			<div id="quiz" ng-controller="QuizController">
+
+				<img src="http://10.1.1.71:8080/images/saggezzainst.png" alt="Saggezza" style="width:360px;height:80px;">
+
+				<div class="{{ ($index === activeQuestion) ? 'on' : 'off' }}" ng-repeat="myQuestion in questions"></div>
+
+			<div class="progress"></div>
+			
+				<div class="intro {{ (activeQuestion > -1) ? 'inactive' : 'active' }}">
+					<h2>Welcome</h2>
+					<p>Click begin to test your knowledge!</p>
+					<p class="btn" ng-click="activeQuestion = 0">Begin</p>
+				</div>
+
+
+					<div class="question 
+						{{ $index === activeQuestion ? 'active' : 'inactive' }}
+						{{ question.questionState === 'answered' ? 'answered' : 'unanswered' }}
+						" ng-repeat="question in questions">
+
+						<p class="txt">{{question.question}}</p>
+						<p class="ans" 
+
+							ng-class="{ selected:isSelected($parent.$index,$index),
+							correct:isCorrect($parent.$index,$index) }"
+
+							ng-click="selectAnswer($parent.$index,$index)"
+							ng-repeat="Answer in questions[$index].answers">
+								{{Answer.text}}
+							</p>
+
+						<div class="feedback">
+							<p ng-show="question.correctness === 'correct'">You are <strong>correct!</strong></p>
+							<p ng-show="question.correctness === 'incorrect'"><strong>Incorrect!</strong></p>
+							<div class="btn" ng-click="selectContinue()">Continue</div>
+						</div>	
+
+					</div>
+
+
+						<div class="results">
+							<h3>Results</h3>
+							<p>You scored X% by answering X of the total X questions.</p>
+							<p>Use the links below to challenge your friends</p>
+
+							<div class="share">
+								<a class="btn email" href="#">Email</a>
+								<a class="btn twitter" href="#">Tweet</a>
+							</div>
+
+						</div>
+			
+		
+			<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+			<script type="text/javascript" src="js/quiz.js"></script>
+
+		</body>
+</html>
