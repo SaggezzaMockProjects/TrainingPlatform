@@ -1,13 +1,11 @@
 'use strict';
 
 /**
- * @ngdoc function
- * @name trainingPlatformApp.controller:AboutCtrl
- * @description
- * # AboutCtrl
- * Controller of the trainingPlatformApp
+ * @name Dashboard.js
+ * @description Connects the dasboard view and controller together.
+ ******NOT FINISHED*******
  */
-angular.module('trainingPlatformApp')
-  .controller('DashboardCtrl', function () {
-    
-  });
+ angular.module('trainingPlatformApp')
+   .component('dashboard', {
+     templateUrl: '/views/dashboard.html'
+   });
