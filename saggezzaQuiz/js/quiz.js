@@ -9,7 +9,7 @@
 		$scope.activeQuestionAnswered = 0;
 		$scope.percentage = 0;
 
-		$http.get('http://10.1.1.71:8080/quiz_data.json').then(function(quizData){
+		$http.get('../quiz_data.json').then(function(quizData){
 			$scope.questions = quizData.data;
 			$scope.totalQuestions = $scope.questions.length;
 		});
@@ -30,8 +30,10 @@
 				}
 				else{
 					$scope.questions[qIndex].correctness =  'incorrect';
+
 				}
 				$scope.questions[qIndex].questionState = 'answered';
+				$scope.activeQuestionAnswered += 1;
 			}
 		}
 

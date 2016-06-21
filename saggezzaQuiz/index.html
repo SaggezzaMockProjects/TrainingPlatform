@@ -10,15 +10,14 @@
 
 			<div id="quiz" ng-controller="QuizController">
 
-				<img src="http://10.1.1.71:8080/images/saggezzainst.png" alt="Saggezza" style="width:360px;height:80px;">
+				<img src="../images/saggezzainst.png" alt="Saggezza" style="width:360px;height:80px;">
 
-				<div class="{{ ($index === activeQuestion) ? 'on' : 'off' }}" ng-repeat="myQuestion in questions"></div>
+				<!---<div class="{{ ($index === activeQuestion) ? 'on' : 'off' }}" ng-repeat="myQuestion in questions"></div>-->
 
-			<div class="progress"></div>
-			
+
 				<div class="intro {{ (activeQuestion > -1) ? 'inactive' : 'active' }}">
 					<h2>Welcome</h2>
-					<p>Click begin to test your knowledge!</p>
+					<p>Click begin to test your knowledge on Millenials!</p>
 					<p class="btn" ng-click="activeQuestion = 0">Begin</p>
 				</div>
 
@@ -48,21 +47,20 @@
 					</div>
 
 
-						<div class="results">
+						<div class="results
+							{{ (activeQuestion === questions.length) ? 'active' : 'inactive' }}
+						">
 							<h3>Results</h3>
-							<p>You scored X% by answering X of the total X questions.</p>
-							<p>Use the links below to challenge your friends</p>
-
-							<div class="share">
-								<a class="btn email" href="#">Email</a>
-								<a class="btn twitter" href="#">Tweet</a>
-							</div>
+							<p>You scored {{score / questions.length  * 100 | number:0}}% by answering {{score}} of the total {{questions.length}} questions.</p>
 
 						</div>
 			
 		
 			<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 			<script type="text/javascript" src="js/quiz.js"></script>
+
+			Index ->>>> {{activeQuestionAnswered}}
+			Questions ->>> {{questions.length}}
 
 		</body>
 </html>

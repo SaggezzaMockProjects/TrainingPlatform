@@ -1,6 +1,8 @@
 @import url(http://fonts.googleapis.com/css?family=Titillium+Web:900|Roboto:400,100);
 
-body { background-color: #fff; padding: 20px; }
+body { 
+	background-color: #fff; padding: 20px; 
+}
 
 #quiz {
    font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 400;
@@ -29,9 +31,17 @@ body { background-color: #fff; padding: 20px; }
 	line-height: 65px;
 }
 
-#quiz h2 {font-size: 3em; margin: 0px; font-weight:100;}
-#quiz h3 {font-size: 2.4em; margin: 0px; font-weight:100;}
-#quiz p {margin: 0px 0px 14px 0px;}
+#quiz h2 {
+	font-size: 3em; margin: 0px; font-weight:100;
+}
+
+#quiz h3 {
+	font-size: 2.4em; margin: 0px; font-weight:100;
+}	
+
+#quiz p {
+	margin: 0px 0px 14px 0px;
+}
 
 #quiz .btn {
 	display: inline-block;
@@ -46,14 +56,14 @@ body { background-color: #fff; padding: 20px; }
 }
 
 /* INtro */
-#quiz .intro {position: absolute; top: 225px; left: 660px; width: 550px;}
+#quiz .intro {position: absolute; top: 100px; left: 660px; width: 550px;}
 
 #quiz .intro p {margin: 0px 0px 40px 0px;}
 
 #quiz .question {
 	width: 550px;
 	position: absolute;
-	top: 225px;
+	top: 125px;
 	left: -1350px;
 
 	 text-decoration-color: #fff
@@ -96,11 +106,11 @@ body { background-color: #fff; padding: 20px; }
 }
 
 #quiz .question .ans.selected::after {
-	background-image: url(http://10.1.1.71:8080/images/icon_incorrect.svg);
+	background-image: url(../images/icon_incorrect.svg);
 }
 
 #quiz .question .ans.correct::after {
-	background-image: url(http://10.1.1.71:8080/images/icon_correct.svg);
+	background-image: url(../images/icon_correct.svg);
 }
 
 #quiz .question.unanswered .ans {
@@ -166,19 +176,10 @@ body { background-color: #fff; padding: 20px; }
 	background-size: 25px 25px;
 }
 
-#quiz .results .share a.btn.email {
-	background-color: #f0a121
-	background-image: url(http://10.1.1.71:8080/images/icon_email.svg);
-}
-
-#quiz .results .share a.btn.twitter {
-	background-color: #59adeb
-	background-image: url(http://10.1.1.71:8080/images/background.jpg);
-}
-
 #quiz .active, #quiz .inactive { transition: left 1.5s ease-in-out; }
 
 #quiz .active { left: 40px; }
+
 
 #quiz .intro.inactive, #quiz.inacgtive.answered { left: -1350px; }
 
