@@ -1,17 +1,19 @@
 <html>
 <!--Registration View-->
-<h1><center> Register For Saggezza Institute </center></h1>
+<h1><center> Register </center></h1>
 <body>
-  <form class = "container" ng-submit = "$ctrl.register(registerUser)" name="registerForm" role="form">
+  <div class = "alert alert-danger" ng-show = "message" >
+    <p>{{message}}</p>
+  </div>
+  <form ng-submit = "register(registerUser)" name="registerForm" role="form">
     <div class="form-group">
       <label for="email">E-mail</label>
-      <input type="email" class="form-control" name="email" ng-model="registerUser.email" ng-required="true" remote-validated="used">
+      <input type="email" class="form-control" name="email" ng-model="registerUser.email" ng-required="true">
     </div>
 
     <div class="form-group">
       <label for="firstName">First Name</label>
       <input type="text" class="form-control" id = "firstName" name="firstName" ng-model="registerUser.firstName" ng-minlength="2" ng-maxlength="32" ng-required="true">
-      <div ng-messages = "loginForm.email.$error"></div>
     </div>
 
     <div class="form-group">
@@ -25,7 +27,7 @@
     </div>
 
     <div class = "form-group">
-      <label for="password">Repeat Password</label>
+      <label for="password">Confirm Password</label>
       <input type="password" id = "repeatPassword" class="form-control" name="repeatPassword" ng-model="registerUser.repeatPassword">
     </div>
     <button class="btn btn-success" type="submit"> Sign Up </button>

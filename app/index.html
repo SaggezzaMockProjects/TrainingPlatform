@@ -6,14 +6,14 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css" />
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
     <link rel="stylesheet" href="styles/main.css">
   </head>
 
   <!--Show each view here-->
   <body>
-    <div>
       <div ng-view></div>
-    </div>
   </body>
 
   <!-- build:js(.) scripts/vendor.js -->
@@ -34,17 +34,16 @@
   <script src="bower_components/stormpath-sdk-angularjs/dist/stormpath-sdk-angularjs.tpls.min.js"></script>
   <script src="bower_components/firebase/firebase.js"></script>
   <script src="bower_components/angularfire/dist/angularfire.js"></script>
+  <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
   <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
   <script type="text/javascript" src="https://cdn.firebase.com/libs/angularfire/1.1.4/angularfire.min.js"></script>
   <script type = "text/javascript" src="/scripts/app.js"></script>
   <script type = "text/javascript" src="/scripts/controllers/login.js"></script>
-  <script type = "text/javascript" src="/scripts/controllers/register.js"></script>
   <script type = "text/javascript" src="/scripts/controllers/dashboard.js"></script>
   <script type = "text/javascript" src="/scripts/fbUrl.js"></script>
   <script type = "text/javascript" src="/scripts/auth.js"></script>
   <script type = "text/javascript" src="/scripts/nav.js"></script>
   <script type = "text/javascript" src="/scripts/controllers/logout.js"></script>
-
 </html>

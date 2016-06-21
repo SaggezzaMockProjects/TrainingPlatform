@@ -8,7 +8,7 @@
  * https://www.firebase.com/docs/web/libraries/angular/
  * Also used bootstrap for UI.
  * @TODO
- * Form validations/error messages on login, register, and forgotpassword
+ * More advanced form validations/error messages on login, register, and forgot password
  * Update front end
  * Administrator account: <admin>
  *  View all users - SUPER EASY WITH FIREBASE DB
@@ -25,7 +25,6 @@
  *  Would like to add a profile page
  *  EMAIL CONFIRMATION. There is a 'hack' that could be used with angularfire.
  *  http://andreasmcdermott.com/web/2014/02/05/Email-verification-with-Firebase/
- *  Password Reset. NOT WORKING. AngularFire API sends reset password emails.
  * </user>
  *
  * General:
@@ -43,20 +42,19 @@ var app = angular
     'ngTouch',
     'ui.router',
     'ngRoute',
-    'firebase'
+    'firebase',
+    'ngDialog'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/login', {
         template: '<login current-auth="$resolve.currentAuth"></login>',
         resolve: {
+          //Ensure no refreshing while waiting for database to respond
           currentAuth: function(auth) {
             return auth.$waitForAuth();
           }
         }
-      })
-      .when('/register', {
-        template: '<register></register>'
       })
       .when('/', {
         template: '<dashboard></dashboard>',
@@ -69,10 +67,6 @@ var app = angular
       //Not really a view. Needed to end session
       .when('/logout', {
         template: '<logout></logout>'
-      })
-      //NOT FINISHED. NEED TO ADD TEMPORARY PASSWORD ROUTE/PAGE
-      .when('/forgotpassword', {
-        template: '<forgotpassword></forgotpassword>'
       })
       .otherwise('/');
   });

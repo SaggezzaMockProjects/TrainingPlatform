@@ -11,7 +11,11 @@
 
   <!--Login-->
   <div class = "container">
-    <div style="float: right;"><a href = "#/register"> Not Signed Up?</a></div>
+    <div class = "alert alert-danger" ng-show = "message" >
+      <p>{{message}}</p>
+    </div>
+    <div style="float: right;"><a href = "" ng-click = $ctrl.registerUser()> Not Signed Up?</a></div>
+
     <form name="loginForm" role="form" ng-submit="$ctrl.login(user)">
         <div class="form-group">
             <label for="email">E-mail</label>
@@ -25,7 +29,7 @@
             <button type="submit" value = "submit" class="btn btn-primary">Login</button>
         </div>
     </form>
-    <div style="float: right;"><a href = "#/forgotpassword"> Forgot Password? </a></div>
+    <div style="float: right;"><a href = "" ng-click = "$ctrl.forgotPassword()"> Forgot Password? </a></div>
   </div>
 </div>
 </html>
