@@ -10,14 +10,11 @@
 
 			<div id="quiz" ng-controller="QuizController">
 
-				<img src="../images/saggezzainst.png" alt="Saggezza" style="width:320px;height:83px;">
+				<img src="../images/saggezzainst.png" alt="Saggezza" style="width:360px;height:80px;">
 
 				<div class="intro {{ (activeQuestion > -1) ? 'inactive' : 'active' }}">
 					<h2>Welcome</h2>
 					<p>Click begin to test your knowledge on Millenials!</p>
-
-					<p>This quiz requires at least 80% in order to be considered a pass.</p>
-
 					<p class="btn" ng-click="activeQuestion = 0">Begin</p>
 				</div>
 
@@ -52,12 +49,14 @@
 				<h3>Results</h3>
 				<p>You scored {{score / questions.length * 100 | number:0}}% by answering {{score}} of the total {{questions.length}} questions.</p>
 
-				<a class="btn" href="dashboard.html">Dashboard</a>
-				<p class="btn" ng-click="restartQuiz()">Try Again</p>
+				<p class="btn">Dashboard</p>
+				<p class="btn">Try Again</p>
 
 			</div>
 			
+		
 			<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 			<script type="text/javascript" src="js/quiz.js"></script>
+
 		</body>
 </html>

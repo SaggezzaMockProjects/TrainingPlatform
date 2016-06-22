@@ -1,0 +1,60 @@
+#dashboard {
+	
+	/*background: #000 url(http://10.1.1.71:8080/images/background.jpg) no-repeat 0px 0px;*/
+}
+
+#dashboard p center {
+	margin: 0px 0px 14px 0px;
+	font-size: 16px; font-weight: 400;
+}
+
+
+#dashboard .quiz {
+	width: 662px;
+	position: absolute;
+	top: 125px;
+	left: 40px;
+	text-decoration-color: #fff
+
+}
+
+#dashboard .quiz .topic {
+	display: inline-block;
+	font-size: 1.1em;
+	width: 225px;
+	border: 2px solid rgba(0,0,0,.8);
+	background-color:  #000066;
+	color: #fff;
+	border-radius: 6px;
+	padding: 10px;
+	margin: 0px 40px 15px 40px;
+	position: relative;
+}
+
+#dashboard  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+#dashboard li {
+     float: left;
+}
+
+#dashboard li a {
+	display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#dashbaord li a:hover {
+    background-color: #111;
+}
+
+#dashboard .active {
+    background-color: #4CAF50;
+}

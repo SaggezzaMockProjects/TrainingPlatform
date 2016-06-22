@@ -46,7 +46,7 @@ body {
 #quiz .btn {
 	display: inline-block;
 	cursor: pointer;
-	background-color: #000;
+	background-color: #00004d;
 	color: #fff;
 	text-decoration: none;
 
@@ -65,8 +65,7 @@ body {
 	position: absolute;
 	top: 125px;
 	left: -1350px;
-
-	 text-decoration-color: #fff
+	text-decoration-color: #fff
 }
 
 #quiz .question .txt {
@@ -118,7 +117,7 @@ body {
 }
 
 #quiz .question.unanswered .ans:hover {
-	background-color: rgba(238,189,102,.2);
+	background-color: rgba(34,52,189,.1);
 }
 
 #quiz .question.answered .ans {
@@ -126,23 +125,29 @@ body {
 }
 
 /* Feedback */
-
 #quiz .feedback {
-	color: #efbe5e;
+	color: #479dfd;
 	margin-top: 50px;
-	transition: opacity 1.5s, margin-top 1.5s;
+	transition: opacity .8s, margin-top .8s;
 
-		text-shadow: -1px -1px 0 #000,
-	 1px -1px 0 #000,
-	 -1px 1px 0 #000,
-	 1px 1px 0 #000;
+	text-shadow: -1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
 
 	visibility: hidden;
 	opacity: 0;
 }
 
 #quiz .feedback .btn {
-	margin-top: 5px;	
+	display: inline-block;
+	cursor: pointer;
+	background-color: #000;
+	color: #fff;
+	text-decoration: none;
+
+	padding: 5px 15px;
+	border-radius: 6px;
 }
 
 #quiz .feedback strong {
@@ -159,13 +164,31 @@ body {
 
 #quiz .results {
 	position: absolute;
-	top: 225px;
-	left: 660px;
+	top: 125px;
+	left: 960px;
 	width: 550px;
 }
 
 #quiz .results .share {
 	margin-top: 40px;
+}
+
+#quiz .results .btn{
+	margin-right: 25px;
+	padding: 9px 15px 8px 15px;
+	background-repeat: no-repeat;
+	background-position: 10px 5px;
+	background-size: 25px 25px;
+	background-color:  #00004d
+}
+
+#quiz .feedback .btn {
+	margin-right: 25px;
+	padding: 9px 15px 8px 15px;
+	background-repeat: no-repeat;
+	background-position: 10px 5px;
+	background-size: 25px 25px;
+	background-color:  #00004d
 }
 
 #quiz .results .share a.btn {
@@ -176,10 +199,9 @@ body {
 	background-size: 25px 25px;
 }
 
-#quiz .active, #quiz .inactive { transition: left 1.5s ease-in-out; }
+#quiz .active, #quiz .inactive { transition: left .7s ease-in-out; }
 
 #quiz .active { left: 40px; }
-
 
 #quiz .intro.inactive, #quiz.inacgtive.answered { left: -1350px; }
 

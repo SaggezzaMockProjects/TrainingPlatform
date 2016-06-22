@@ -9,11 +9,10 @@
 		$scope.activeQuestionAnswered = 0;
 		$scope.percentage = 0;
 
-		$http.get('../quiz_data.json').then(function(quizData){
+		$http.get('../data/quiz_data.json').then(function(quizData){
 			$scope.questions = quizData.data;
 			$scope.totalQuestions = $scope.questions.length;
 		});
-
 
 		$scope.selectAnswer = function(qIndex,aIndex){
 
@@ -47,6 +46,18 @@
 
 		$scope.selectContinue = function(){
 			return $scope.activeQuestion += 1;
+		}
+
+		$scope.restartQuiz = function(){
+			$scope.score = 0;
+			$scope.activeQuestion = -1;
+			$scope.activeQuestionAnswered = 0;
+			$scope.percentage = 0;
+
+			$http.get('../data/quiz_data.json').then(function(quizData){
+				$scope.questions = quizData.data;
+				$scope.totalQuestions = $scope.questions.length;
+			});
 		}
 
 	}]);
