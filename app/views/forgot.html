@@ -1,8 +1,8 @@
 <html>
 <h1><center> Reset Password </center></h1>
 <body>
-  <div class = "alert alert-danger" ng-show = "message" >
-    <p>{{message}}</p>
+  <div class = "alert alert-danger" ng-show = "failedMessage" >
+    <p>{{failedMessage}}</p>
   </div>
   <form name="forgotForm" role="form" ng-submit="forgotPassword(userForgot)">
     <div class="form-group">

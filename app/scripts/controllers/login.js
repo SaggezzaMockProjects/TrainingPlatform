@@ -4,97 +4,109 @@
  * @description Validates the login credentials through Firebase API.
  */
 
- function CheckPasswords(user) {
-   if(user.password !== user.repeatPassword) {
-     return false;
-   }
-   return true;
- }
-
  function ForgotPasswordCtrl(auth,$location,$scope,ngDialog) {
    $scope.forgotPassword = function(user) {
      //Send reset password email through firebase/AngularFire API
      auth.$resetPassword({
        email: user.email
      }).then(function() {
-       $scope.message = "Successfully sent password reset email";
+       $scope.successMessage = "Successfully sent password reset email";
        ngDialog.closeAll();
      }).catch((function(err) {
        switch(err.code) {
          case "INVALID_USER":
-           $scope.message = "This email is not associated with any user.";
+           $scope.failedMessage = "This email is not associated with any user.";
            break;
          default:
-           $scope.message = "Error resetting password. Please try again.";
+           $scope.failedMessage = "Error resetting password. Please try again.";
            break;
        }
      }).bind(this));
    };
  }
 
- function RegisterCtrl(auth,$location,$scope,ngDialog) {
+ function RegisterCtrl(auth,$location,$scope,ngDialog, fbRef, $firebaseObject) {
    $scope.register = function(user) {
      if(!user) {
        return false;
      }
+
      //Return if passwords don't match
-     if(CheckPasswords(users)) {
-       $scope.message = "Passwords do not match.";
+     if(user.password !== user.repeatPassword) {
+       $scope.failedMessage = "Passwords do not match.";
        return false;
      }
      //Firebase API to create user
      auth.$createUser({
        email    : user.email,
        password : user.password
+     } , function(error, authData) {
+       if(error) {
+         return false;
+       }
+
+       var flName = user.firstName + " " + user.lastName;
+
+       fbRef.$child("users").$child(authData.uid).$set({
+         name: flName,
+         provider: authData.provider
+       });
      }).then(function() {
        //Close Dialog and Return to Login page
        $location.path('/login');
-       $scope.message = "Successfully Registered.";
        ngDialog.closeAll();
+       $scope.$successMessage = "Successfully Registered.";
+       //this.user = $firebaseObject(fbRef.getUsersRef());
+       //this.user.$save();
+       //fbRef.child("users").child(authData);
      }).catch((function(err) {
        //Error codes through Firebase/AngularFire
        switch (err.code) {
         case "EMAIL_TAKEN":
-          $scope.message = "Email is already taken.";
+          $scope.failedMessage = "Email is already taken.";
           break;
         case "INVALID_EMAIL":
-          $scope.message = "Invalid Email.";
+          $scope.failedMessage = "Invalid Email.";
           break;
         default:
-          $scope.message = "Error creating user.";
+          $scope.failedMessage = "Error creating user.";
           break;
       }
      }).bind(this));
    };
  }
 
- function UpdatePasswordCtrl(auth,$location, ngDialog, $scope) {
-   this.updatePassword = function(user) {
+ function UpdatePasswordCtrl(auth, $location, ngDialog, $scope, email, tempPass) {
+   $scope.updatePassword = function(user) {
      if(!user) {
        return false;
      }
+
      //Return if passwords don't match
-     if(CheckPasswords(users)) {
-       $scope.message = "Passwords do not match.";
+     if(user.newPassword !== user.confirmNewPassword) {
+       $scope.failedMessage = "Passwords do not match.";
        return false;
      }
 
      //Change Password using AngularFire API and Firebase
-     auth.changePassword({
-       email       : loginData.password.email,
-       oldPassword : user.oldPassword,
+     auth.$changePassword({
+       email       : email,
+       oldPassword : tempPass,
        newPassword : user.newPassword
      }).then(function() {
        $location.path('/dashboard');
+       ngDialog.closeAll();
+       $scope.successMessage = "Successfully Changed Password";
      }).catch((function(err) {
-       $scope.message = err.code;
+       $scope.failedMessage = err.code;
      }).bind(this));
-   }
+   };
  }
 
  function LoginCtrl(auth, $location, ngDialog, $scope) {
    this.loggedIn = !!this.currentAuth;
 
+   //Triggers when user presses login button
    this.login = function(user) {
      //Return if user credentials are empty
      if(!user) {
@@ -104,24 +116,29 @@
      auth.$authWithPassword({
        email    : user.email,
        password : user.password
-     }, function(error, authData) {
-       if(error) {
-         $scope.message = "Login Failed"
-       } else if(authData.password.isTemporaryPassword) {
+     }, {
+       remember: "sessionOnly"
+     }).then(function(authData) {
+       //Temporary password->redirect to update password
+       if(authData.password.isTemporaryPassword) {
          ngDialog.open({
            templateUrl: '/views/updatePassword.html',
            controller: UpdatePasswordCtrl,
-           locals: {
-             loginData: authData
+           //Pass email and password to UpdatePasswordCtrl controller
+           resolve: {
+             email: function emailFactory() {
+               return authData.password.email;
+             },
+             tempPass: function passFactory() {
+               return user.password;
+             }
            }
          });
+       } else {
+         $location.path('/dashboard');
        }
-     }, {
-       remember: "sessionOnly"
-     }).then(function() {
-       $location.path('/dashboard');
-     }).catch((function(err) {
-       $scope.message = "Incorrect Email/Password Combination";
+     }).catch((function() {
+       $scope.failedMessage = "Incorrect Email/Password Combination";
      }).bind(this));
    };
 
@@ -140,6 +157,18 @@
        controller: RegisterCtrl
      });
    };
+
+   //Will update later
+   /*this.googleLogin = function() {
+     auth.$authWithOAuthRedirect("google", {
+       remember: "sessionOnly",
+       scope: "email"
+     }).then(function() {
+       $location.path('/dashboard');
+     }).catch((function(err) {
+       $scope.message = err.code;
+     }).bind(this));
+   };*/
  }
 
  /**

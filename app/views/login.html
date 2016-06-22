@@ -1,6 +1,6 @@
 <html>
 <!-- Hide login page if logged in -->
-<div ng-hide = "$ctrl.loggedIn">
+<!--<div ng-hide = "$ctrl.loggedIn">-->
 
   <span>
     <div class="jumbotron">
@@ -11,8 +11,11 @@
 
   <!--Login-->
   <div class = "container">
-    <div class = "alert alert-danger" ng-show = "message" >
-      <p>{{message}}</p>
+    <div class = "alert alert-danger" ng-show = "failedMessage" >
+      <p>{{failedMessage}}</p>
+    </div>
+    <div class = "alert alert-success" ng-show = "successMessage" >
+      <p>{{successMessage}}</p>
     </div>
     <div style="float: right;"><a href = "" ng-click = $ctrl.registerUser()> Not Signed Up?</a></div>
 
@@ -30,6 +33,8 @@
         </div>
     </form>
     <div style="float: right;"><a href = "" ng-click = "$ctrl.forgotPassword()"> Forgot Password? </a></div>
+    <!--<div<button type="submit" value = "submit" class="btn btn-primary" ng-click = "$ctrl.googleLogin()">Google</button>-->
   </div>
+
 </div>
 </html>
