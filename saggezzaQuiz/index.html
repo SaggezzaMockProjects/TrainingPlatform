@@ -1,16 +1,32 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
+	<head id=quiz>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Saggezza Institute</title>
 		<link rel="stylesheet" type="text/css" href="css/quiz.css">
+
+
+
+
 	</head>
 		<body ng-app="quiz">
 
 			<div id="quiz" ng-controller="QuizController">
 
+			<div>
+			<ul>
+  			<li><a href="dashboard.html">Home</a></li>
+  			<li><a href="dashboard.html">Dashboard</a></li>
+  			<li><a href="dashboard.html">Register</a></li>
+		    <li><a href="dashboard.html">Quiz</a></li>
+			</ul> 
+			</div>
+
+
+			<div>
 				<img src="../images/saggezzainst.png" alt="Saggezza" style="width:320px;height:83px;">
+			</div>
 
 				<div class="intro {{ (activeQuestion > -1) ? 'inactive' : 'active' }}">
 					<h2>Welcome</h2>
