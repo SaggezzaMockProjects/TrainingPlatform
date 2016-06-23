@@ -5,6 +5,7 @@
  */
 
  function ForgotPasswordCtrl(auth,$location,$scope,ngDialog) {
+   
    $scope.forgotPassword = function(user) {
      //Send reset password email through firebase/AngularFire API
      auth.$resetPassword({
@@ -49,9 +50,6 @@
        $location.path('/login');
        ngDialog.closeAll();
        $scope.$successMessage = "Successfully Registered.";
-       //this.user = $firebaseObject(fbRef.getUsersRef());
-       //this.user.$save();
-       //fbRef.child("users").child(authData);
      }).catch((function(err) {
        //Error codes through Firebase/AngularFire
        switch (err.code) {
@@ -71,6 +69,7 @@
 
  function UpdatePasswordCtrl(auth, $location, ngDialog, $scope, email, tempPass) {
    $scope.updatePassword = function(user) {
+     
      if(!user) {
        return false;
      }
@@ -94,9 +93,11 @@
        $scope.failedMessage = err.code;
      }).bind(this));
    };
+
  }
 
  function LoginCtrl(auth, $location, ngDialog, $scope) {
+   
    this.loggedIn = !!this.currentAuth;
 
    //Triggers when user presses login button
@@ -105,6 +106,7 @@
      if(!user) {
        return false;
      }
+     
      //Authorize user with email and password through Firebase API
      auth.$authWithPassword({
        email    : user.email,

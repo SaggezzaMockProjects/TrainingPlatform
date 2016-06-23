@@ -1,0 +1,233 @@
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web:900|Roboto:400,100);
+
+body { 
+	background-color: #fff; padding: 0px; 
+}
+
+#quiz {
+   font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 400;
+	width: 650px; height: 650px;
+	position: relative;
+	overflow: hidden;
+	color: #000;
+	/*background: #000 url(http://10.1.1.71:8080/images/background.jpg) no-repeat 0px 0px;*/
+}
+
+#quiz h1 {
+	font-weight: 100;
+	font-size: 2em;
+	text-transform: uppercase;
+	margin: 0px;
+	position: absolute;
+	top: 25px;
+	left: 36px;
+}
+
+#quiz h1 span {
+	display: block;
+	font-weight: 900;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 1.5em;
+	line-height: 65px;
+}
+
+#quiz h2 {
+	font-size: 3em; margin: 0px; font-weight:100;
+}
+
+#quiz h3 {
+	font-size: 2.4em; margin: 0px; font-weight:100;
+}	
+
+#quiz p {
+	margin: 0px 0px 14px 0px;
+}
+
+#quiz .btn {
+	display: inline-block;
+	cursor: pointer;
+	background-color: #00004d;
+	color: #fff;
+	text-decoration: none;
+
+	padding: 5px 15px;
+	border-radius: 6px;
+
+}
+
+/* INtro */
+#quiz .intro {position: absolute; top: 150px; left: 660px; width: 550px;}
+
+#quiz .intro p {margin: 0px 0px 40px 0px;}
+
+#quiz .question {
+	width: 550px;
+	position: absolute;
+	top: 150px;
+	left: -1350px;
+	
+}
+
+#quiz .question .txt {
+	font-size: 1.6em; margin: 0px 0px 20px 0px;
+}
+
+#quiz .question .ans {
+	display: inline-block;
+	font-size: 1.1em;
+	width: 225px;
+	border: 2px solid rgba(0,0,0,.4);
+	border-radius: 6px;
+	padding: 10px;
+	margin: 0px 15px 15px 0px;
+	position: relative;
+}
+
+#quiz .question .ans.selected {
+	border-color: #be4b16;
+
+}
+
+#quiz .question .ans.correct {
+	border-color: #459a2e;
+}
+
+#quiz .question .ans::after {
+	content:'';
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: no-repeat 0px 0px;
+	background-size: 20px 20px;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+#quiz .question .ans.selected::after {
+	background-image: url(../images/icon_incorrect.svg);
+}
+
+#quiz .question .ans.correct::after {
+	background-image: url(../images/icon_correct.svg);
+}
+
+#quiz .question.unanswered .ans {
+	cursor: pointer;
+}
+
+#quiz .question.unanswered .ans:hover {
+	background-color: rgba(34,52,189,.1);
+}
+
+#quiz .question.answered .ans {
+	cursor: default;
+}
+
+/* Feedback */
+#quiz .feedback {
+	color: #479dfd;
+	margin-top: 50px;
+	transition: opacity .8s, margin-top .8s;
+
+	text-shadow: -1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
+
+	visibility: hidden;
+	opacity: 0;
+}
+
+#quiz .feedback .btn {
+	display: inline-block;
+	cursor: pointer;
+	background-color: #000;
+	color: #fff;
+	text-decoration: none;
+
+	padding: 5px 15px;
+	border-radius: 6px;
+}
+
+#quiz .feedback strong {
+	color: #fff;	
+}
+
+#quiz .answered .feedback {
+	visibility: visible;
+	opacity: 1;
+	margin-top: 10px;
+}
+
+/* Results */
+
+#quiz .results {
+	position: absolute;
+	top: 125px;
+	left: 960px;
+	width: 550px;
+}
+
+#quiz .results .share {
+	margin-top: 40px;
+}
+
+#quiz .results .btn{
+	margin-right: 25px;
+	padding: 9px 15px 8px 15px;
+	background-repeat: no-repeat;
+	background-position: 10px 5px;
+	background-size: 25px 25px;
+	background-color:  #00004d
+}
+
+#quiz .feedback .btn {
+	margin-right: 25px;
+	padding: 9px 15px 8px 15px;
+	background-repeat: no-repeat;
+	background-position: 10px 5px;
+	background-size: 25px 25px;
+	background-color:  #00004d
+}
+
+#quiz .results .share a.btn {
+	margin-right: 25px;
+	padding: 9px 15px 8px 15px;
+	background-repeat: no-repeat;
+	background-position: 10px 5px;
+	background-size: 25px 25px;
+}
+
+#quiz .active, #quiz .inactive { transition: left .7s ease-in-out; }
+
+#quiz .active { left: 40px; }
+
+#quiz .intro.inactive, #quiz.inacgtive.answered { left: -1350px; }
+
+#quiz  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+#quiz li {
+     float: left;
+}
+
+#quiz li a {
+	display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#quiz li a:hover {
+    background-color: #111;
+}
+
+
+

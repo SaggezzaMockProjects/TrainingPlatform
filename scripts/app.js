@@ -59,6 +59,25 @@ var app = angular
       .when('/', {
         template: '<dashboard></dashboard>',
         resolve: {
+          //Require authentication before going to this view
+          currentAuth: function(auth) {
+            return auth.$requireAuth();
+          }
+        }
+      })
+      .when('/quiz', {
+        template: '<quiz></quiz>',
+        resolve: {
+          //Require authentication before going to this view
+          currentAuth: function(auth) {
+            return auth.$requireAuth();
+          }
+        }
+      })
+      .when('/course', {
+        template: '<course></course>',
+        resolve: {
+          //Require authentication before going to this view
           currentAuth: function(auth) {
             return auth.$requireAuth();
           }
