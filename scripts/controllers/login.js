@@ -44,13 +44,6 @@
        if(error) {
          return false;
        }
-
-       var flName = user.firstName + " " + user.lastName;
-
-       fbRef.$child("users").$child(authData.uid).$set({
-         name: flName,
-         provider: authData.provider
-       });
      }).then(function() {
        //Close Dialog and Return to Login page
        $location.path('/login');
