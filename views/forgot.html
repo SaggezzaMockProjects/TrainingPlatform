@@ -1,0 +1,15 @@
+<html>
+<h1><center> Reset Password </center></h1>
+<body>
+  <div class = "alert alert-danger" ng-show = "failedMessage" >
+    <p>{{failedMessage}}</p>
+  </div>
+  <form name="forgotForm" role="form" ng-submit="forgotPassword(userForgot)">
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="email" class="form-control" name="email" ng-model="userForgot.email" ng-required="true">
+    </div>
+    <button class="btn btn-danger" type="submit" ngDisabled ="forgotForm.$invalid"> Reset Password </button>
+  </form>
+</body>
+</html>

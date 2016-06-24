@@ -1,0 +1,44 @@
+<html>
+<!-- Hide login page if logged in -->
+<!--<div ng-hide = "$ctrl.loggedIn">-->
+
+  <span>
+
+    <div class="jumbotron">
+
+      <img src = "images/saggezzainstitute.png" alt = "Saggezza Institute">
+            <img src='images/background.jpg' style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
+
+      <p> "Knowledge Takes Us Further" </p>
+    </div>
+  </span>
+
+  <!--Login-->
+  <div class = "container">
+    <div class = "alert alert-danger" ng-show = "failedMessage" >
+      <p>{{failedMessage}}</p>
+    </div>
+    <div class = "alert alert-success" ng-show = "successMessage" >
+      <p>{{successMessage}}</p>
+    </div>
+    <div style="float: right;"><a href = "" ng-click = $ctrl.registerUser()> Not Signed Up?</a></div>
+
+    <form name="loginForm" role="form" ng-submit="$ctrl.login(user)">
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="text" name = "email" ng-model = "user.email" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name = "password" ng-model = "user.password" class="form-control" required />
+        </div>
+        <div style = "float: left;" class="form-actions">
+            <button type="submit" value = "submit" class="btn btn-primary">Login</button>
+        </div>
+    </form>
+    <div style="float: right;"><a href = "" ng-click = "$ctrl.forgotPassword()"> Forgot Password? </a></div>
+    <!--<div<button type="submit" value = "submit" class="btn btn-primary" ng-click = "$ctrl.googleLogin()">Google</button>-->
+  </div>
+
+</div>
+</html>

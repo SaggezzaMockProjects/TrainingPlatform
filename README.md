@@ -1,2 +1,11 @@
-# TrainingPlatform
-Training Platform. Will update later..
+# training-platform
+
+
+
+## Build & development
+
+
+
+## Testing
+
+

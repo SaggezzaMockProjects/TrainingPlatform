@@ -1,0 +1,39 @@
+<html>
+<!--Registration View-->
+<h1><center> Register </center></h1>
+<body>
+  <div class = "alert alert-danger" ng-show = "failedMessage" >
+    <p>{{failedMessage}}</p>
+  </div>
+  <div class = "alert alert-success" ng-show = "successMessage" >
+    <p>{{successMessage}}</p>
+  </div>
+  <form ng-submit = "register(registerUser)" name="registerForm" role="form">
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="email" class="form-control" name="email" ng-model="registerUser.email" ng-required="true">
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id = "firstName" name="firstName" ng-model="registerUser.firstName" ng-minlength="2" ng-maxlength="32" ng-required="true">
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" id = "lastName" name="lastName"  ng-model = "registerUser.lastname" ng-minlength="2" ng-maxlength="32" ng-required="true">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id = "password" class="form-control" name="password" ng-model="registerUser.password" ng-minlength="4" ng-maxlength="16" ng-required="true" password-match="registerUser.repeatPassword">
+    </div>
+
+    <div class = "form-group">
+      <label for="password">Confirm Password</label>
+      <input type="password" id = "repeatPassword" class="form-control" name="repeatPassword" ng-model="registerUser.repeatPassword">
+    </div>
+    <button class="btn btn-success" type="submit"> Sign Up </button>
+  </form>
+</body>
+</html>
