@@ -1,24 +1,45 @@
 <!DOCTYPE HTML>
-<html  id="dashboard">
+<html>
+
+<head id=dashboard>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/custom.css" />
+</head>
 
 <nav></nav>
 
-<body id="dashboard">
-    <div>
-        <div class="quiz container">
-            <p><center>Pick a course to take below.</center></p>
-            <ul class = "list-group">
-                <a class="list-group-item" href="#/course">Millenials</a>
-                <a class="list-group-item" href="#/course">Saggezza's History</a>
-                <a class="list-group-item" href="#/course">Consulting 101</a>
-                <a class="list-group-item" href="#/course">Corporate Culture</a>
+<body ng-app="dashboard">
 
-                <a class="list-group-item" href="#/course">More</a>
-                <a class="list-group-item" href="#/course">Escape the Room</a>
-                <a class="list-group-item" href="#/course">Consulting 201</a>
-                <a class="list-group-item" href="#/course">Ethics Training</a>
+<div id="dashboard">
+</div>
+    <div>
+                <p><center>Pick a section below.</center></p>
+        <div class="quiz container">
+
+        <div ng:show="menu === 0">
+            <ul class = "list-group
+            {{(menu === 0) ? 'active' : 'inactive'}}"
+             ng-repeat="section in sections">
+
+             <button type="button" class="list-group-item"  ng-click="findCourses($index)">{{section.section}}</button>
+
+
             </ul>
         </div>
+
+
+        <div ng:show="menu === 1">
+            <ul class = "list-group
+            {{(menu === 1) ? 'active' : 'inactive'}}" 
+            ng-repeat="course in sections[sectionChosen].courses">
+
+                <button type="button" class="list-group-item"  ng-click="goToQuiz()">{{course.text}}</button>
+
+            </ul>
+        </div>
+
+        </div>
+
+
     </div>
 </body>
 

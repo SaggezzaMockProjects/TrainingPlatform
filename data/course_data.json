@@ -1,0 +1,36 @@
+[
+	{
+		"section" : "Saggezza",
+		"courses" : [
+				{ "id" : 0, "text" : "Saggezza 101"},
+				{ "id" : 1, "text" : "Saggezza 201"},
+				{ "id" : 2, "text" : "Saggezza 301"},
+				{ "id" : 3, "text" : "Saggezza 401"},
+				{ "id" : 4, "text" : "Saggezza 501"}
+			]
+	},
+	{
+		"section" : "Our Founders",
+		"courses" : [
+				{ "id" : 1, "text" : "Arvind Kapur"},
+				{ "id" : 2, "text" : "Socka Suppiah"}
+			]
+	},
+	{
+		"section" : "Misc",
+		"courses" : [
+				{ "id" : 0, "text" : "Millenials"},
+				{ "id" : 1, "text" : "Traditionalists"},
+				{ "id" : 2, "text" : "The Game"},
+				{ "id" : 3, "text" : "Making Coffee"}
+			]
+	},
+	{
+		"section" : "Why Saggezza",
+		"courses" : [
+				{ "id" : 0, "text" : "Leadership"},
+				{ "id" : 1, "text" : "Happy Hour"},
+				{ "id" : 2, "text" : "Meet the Office"}
+			]
+	}
+]

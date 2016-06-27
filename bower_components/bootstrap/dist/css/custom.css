@@ -1,0 +1,13 @@
+.list-group.active{
+	font-weight: 700;
+
+	visibility: visible;
+}
+
+.list-group.inactive{
+	font-weight: 700;
+
+	left: -500px;
+
+	visibility: hidden;
+}

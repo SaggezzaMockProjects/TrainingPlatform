@@ -87,7 +87,17 @@ var app = angular
       .when('/logout', {
         template: '<logout></logout>'
       })
+      .when('/admin', {
+        template: '<admin></admin>',
+        resolve: {
+          //Require authentication before going to this view
+          currentAuth: function(auth) {
+            return auth.$requireAuth();
+          }
+        }
+      })
       .otherwise('/');
+
   });
 
   /**

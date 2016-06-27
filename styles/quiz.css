@@ -56,14 +56,19 @@ body {
 }
 
 /* INtro */
-#quiz .intro {position: absolute; top: 150px; left: 660px; width: 550px;}
+#quiz .intro {
+	position: absolute;
+	top: 30px;
+	left: 660px;
+	width: 550px;
+}
 
 #quiz .intro p {margin: 0px 0px 40px 0px;}
 
 #quiz .question {
 	width: 550px;
 	position: absolute;
-	top: 150px;
+	top: 30px;
 	left: 660px;
 	
 }
