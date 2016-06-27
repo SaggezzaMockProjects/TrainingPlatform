@@ -114,6 +114,7 @@
      }, {
        remember: "sessionOnly"
      }).then(function(authData) {
+       
        //Temporary password->redirect to update password
        if(authData.password.isTemporaryPassword) {
          ngDialog.open({

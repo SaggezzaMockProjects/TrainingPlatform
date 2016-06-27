@@ -27,9 +27,6 @@
  *  http://andreasmcdermott.com/web/2014/02/05/Email-verification-with-Firebase/
  * </user>
  *
- * General:
- * Security-As of now, people can read/write into the DB. Check out the
- * Security.js file for more info.
  *
  */
 var app = angular
@@ -57,11 +54,49 @@ var app = angular
         }
       })
       .when('/', {
-        template: '<dashboard></dashboard>',
+        template: '<dashboard courses="$resolve.courses" hires="$resolve.hires" tech="$resolve.tech" compliance="$resolve.compliance" knowledge="$resolve.knowledge" general="$resolve.general"></dashboard>',
         resolve: {
           //Require authentication before going to this view
-          currentAuth: function(auth) {
-            return auth.$requireAuth();
+          courses: function(fbRef,$firebaseArray,auth) {
+            return auth.$requireAuth().then(function() {
+              var query = fbRef.getCoursesRef().orderByChild("name");
+              return $firebaseArray(query).$loaded();
+            });
+          },
+
+          hires: function(fbRef,$firebaseArray,auth) {
+            return auth.$requireAuth().then(function() {
+              var query = fbRef.getNewHireRef().orderByChild("name");
+              return $firebaseArray(query).$loaded();
+            });
+          },
+
+          tech: function(fbRef,$firebaseArray,auth) {
+            return auth.$requireAuth().then(function() {
+              var query = fbRef.getTechnicalRef().orderByChild("name");
+              return $firebaseArray(query).$loaded();
+            });
+          },
+
+          compliance: function(fbRef,$firebaseArray,auth) {
+            return auth.$requireAuth().then(function() {
+              var query = fbRef.getComplianceRef().orderByChild("name");
+              return $firebaseArray(query).$loaded();
+            });
+          },
+
+          knowledge: function(fbRef,$firebaseArray,auth) {
+            return auth.$requireAuth().then(function() {
+              var query = fbRef.GetKnowledgeRef().orderByChild("name");
+              return $firebaseArray(query).$loaded();
+            });
+          },
+
+          general: function(fbRef,$firebaseArray,auth) {
+            return auth.$requireAuth().then(function() {
+              var query = fbRef.getGeneralOpsRef().orderByChild("name");
+              return $firebaseArray(query).$loaded();
+            });
           }
         }
       })
@@ -76,6 +111,24 @@ var app = angular
       })
       .when('/course', {
         template: '<course></course>',
+        resolve: {
+          //Require authentication before going to this view
+          currentAuth: function(auth) {
+            return auth.$requireAuth();
+          }
+        }
+      })
+      .when('/users', {
+        template: '<users></users>',
+        resolve: {
+          //Require authentication before going to this view
+          currentAuth: function(auth) {
+            return auth.$requireAuth();
+          }
+        }
+      })
+      .when('/profile', {
+        template: '<profile></profile>',
         resolve: {
           //Require authentication before going to this view
           currentAuth: function(auth) {

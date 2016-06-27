@@ -3,20 +3,40 @@
 
 <nav></nav>
 
-<body id="dashboard">
+<body>
     <div>
-        <div class="quiz container">
-            <p><center>Pick a course to take below.</center></p>
+        <p><center>Pick a course below to continue.</center></p>
+        <div class="quiz container" >
+            <h3>New Hire</h3>
             <ul class = "list-group">
-                <a class="list-group-item" href="#/course">Millenials</a>
-                <a class="list-group-item" href="#/course">Saggezza's History</a>
-                <a class="list-group-item" href="#/course">Consulting 101</a>
-                <a class="list-group-item" href="#/course">Corporate Culture</a>
+                <a class="list-group-item" href="#/course" ng-repeat="hire in $ctrl.hires" >{{hire.name}}</a>
+            </ul>
+        </div>
 
-                <a class="list-group-item" href="#/course">More</a>
-                <a class="list-group-item" href="#/course">Escape the Room</a>
-                <a class="list-group-item" href="#/course">Consulting 201</a>
-                <a class="list-group-item" href="#/course">Ethics Training</a>
+        <div class="quiz container" >
+            <h3>Compliance</h3>
+            <ul class = "list-group">
+                <a class="list-group-item" href="" ng-repeat="compliance in $ctrl.compliance" >{{compliance.name}}</a>
+            </ul>
+        </div>
+        
+        <div class="quiz container" >
+            <h3>Technical</h3>
+            <ul class = "list-group">
+                <a class="list-group-item" href="#/course" ng-repeat="tech in $ctrl.tech" >{{tech.name}}</a>
+            </ul>
+        </div>
+
+        <div class="quiz container" >
+            <h3>Knowledge Bank</h3>
+            <ul class = "list-group">
+                <a class="list-group-item" href="#/course" ng-repeat="knowledge in $ctrl.hires" >{{knowledge.name}}</a>
+            </ul>
+        </div>
+        <div class="quiz container" >
+            <h3>General Operations</h3>
+            <ul class = "list-group">
+                <a class="list-group-item" href="#/course" ng-repeat="general in $ctrl.general" >{{general.name}}</a>
             </ul>
         </div>
     </div>

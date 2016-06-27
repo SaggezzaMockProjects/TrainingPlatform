@@ -2,7 +2,7 @@
 
 /**
  * @name fbUrl.js
- * @description URL for the Firebase. Needed to access the Database.
+ * @description Reference to the root node of the database
  */
 var Firebase;
 angular.module('trainingPlatformApp').constant('FirebaseUrl','https://training-platform.firebaseIO.com')
