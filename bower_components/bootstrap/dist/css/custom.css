@@ -11,3 +11,24 @@
 
 	visibility: hidden;
 }
+
+.list-group.dashboard{
+	font-weight: 700;
+	border: 2px solid rgba(0,0,0,.4);
+	border-radius: 6px;
+		background-color: #000;
+	color: #fff;
+}
+
+.list-group-item.dashboard{
+	font-weight: 700;
+	border: 2px solid rgba(0,0,0,.4);
+	border-radius: 6px;
+	background-color: #000033;
+	color: #fff;
+}
+
+.dashboard.title {
+	font-weight: 700;
+	font-size: 40px;
+}

@@ -1,8 +1,11 @@
-
-
-#dashboard p {
+#dashboard h3 {
 	margin: 0px 0px 14px 0px;
-	font-size: 16px; font-weight: 400;
+	font-size: 26px; font-weight: 700;
+}
+
+#dashboard h2{
+	margin: 0px 0px 14px 0px;
+	font-size: 26px; font-weight: 700;
 }
 
 
@@ -33,22 +36,6 @@
     padding: 0;
     overflow: hidden;
     background-color: #333;
-}
-
-#dashboard li {
-     float: left;
-}
-
-#dashboard li a {
-	display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-#dashbaord li a:hover {
-    background-color: #111;
 }
 
 #dashboard .active {

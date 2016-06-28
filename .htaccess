@@ -450,9 +450,6 @@ FileETag None
     ExpiresByType application/xml                       "access plus 0 seconds"
     ExpiresByType text/xml                              "access plus 0 seconds"
 
-  # Favicon (cannot be renamed!)
-    ExpiresByType image/x-icon                          "access plus 1 week"
-
   # HTML components (HTCs)
     ExpiresByType text/x-component                      "access plus 1 month"
 
