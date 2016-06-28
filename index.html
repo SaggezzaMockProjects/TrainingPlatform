@@ -1,0 +1,59 @@
+<!doctype html>
+<html ng-app="trainingPlatformApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Saggezza Institute</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta name="google-signin-client_id" content="165899568048-1l0kalkjircecevlsc76bh4s2aubnp17.apps.googleusercontent.com">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css" />
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/course.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+  </head>
+
+  <!--Show each view here-->
+  <body>
+      <div ng-view></div>
+  </body>
+
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+  <script src="bower_components/satellizer/satellizer.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/stormpath-sdk-angularjs/dist/stormpath-sdk-angularjs.min.js"></script>
+  <script src="bower_components/stormpath-sdk-angularjs/dist/stormpath-sdk-angularjs.tpls.min.js"></script>
+  <script src="bower_components/firebase/firebase.js"></script>
+  <script src="bower_components/angularfire/dist/angularfire.js"></script>
+  <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
+  <!-- endbower -->
+
+  <!-- endbuild -->
+  <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+  <script type="text/javascript" src="https://cdn.firebase.com/libs/angularfire/1.1.4/angularfire.min.js"></script>
+  <script type = "text/javascript" src="/scripts/app.js"></script>
+  <script type = "text/javascript" src="/scripts/controllers/login.js"></script>
+  <script type = "text/javascript" src="/scripts/controllers/dashboard.js"></script>
+  <script type = "text/javascript" src="/scripts/fbUrl.js"></script>
+  <script type = "text/javascript" src="/scripts/fbRef.js"></script>
+  <script type = "text/javascript" src="/scripts/auth.js"></script>
+  <script type = "text/javascript" src="/scripts/nav.js"></script>
+  <script type = "text/javascript" src="/scripts/controllers/logout.js"></script>
+  <script type = "text/javascript" src="/scripts/controllers/quiz.js"></script>
+  <script type = "text/javascript" src="/scripts/controllers/course.js"></script>
+  <script type = "text/javascript" src="/scripts/controllers/users.js"></script>
+  <script type = "text/javascript" src="/scripts/controllers/profile.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</html>
