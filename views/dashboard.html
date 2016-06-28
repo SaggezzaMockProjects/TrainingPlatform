@@ -12,35 +12,37 @@
 <div id="dashboard">
 </div>
     <div>
-                <p><center>Pick a section below.</center></p>
+        
+        <p><center>Pick a section below.</center></p>
         <div class="quiz container">
 
-        <div ng:show="menu === 0">
-            <ul class = "list-group
-            {{(menu === 0) ? 'active' : 'inactive'}}"
-             ng-repeat="section in sections">
+            <div ng:show="menu === 0">
+                <ul class = "list-group
+                {{(menu === 0) ? 'active' : 'inactive'}}"
+                ng-repeat="section in sections">
 
-             <button type="button" class="list-group-item"  ng-click="findCourses($index)">{{section.section}}</button>
-
-
-            </ul>
-        </div>
+                    <button type="button" class="list-group-item"  ng-click="findCourses($index)">{{section.section}}</button>
 
 
-        <div ng:show="menu === 1">
-            <ul class = "list-group
-            {{(menu === 1) ? 'active' : 'inactive'}}" 
-            ng-repeat="course in sections[sectionChosen].courses">
+                </ul>   
+            </div>
 
-                <button type="button" class="list-group-item"  ng-click="goToQuiz()">{{course.text}}</button>
 
-            </ul>
-        </div>
+            <div ng:show="menu === 1">
+                <ul class = "list-group
+                {{(menu === 1) ? 'active' : 'inactive'}}" 
+                ng-repeat="course in sections[sectionChosen].courses">
+
+                    <button type="button" class="list-group-item"  ng-click="goToQuiz()">{{course.text}}</button>
+
+                </ul>
+            </div>
 
         </div>
 
 
     </div>
+
 </body>
 
 </html>

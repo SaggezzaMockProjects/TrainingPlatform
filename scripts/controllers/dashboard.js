@@ -1,11 +1,20 @@
 'use strict';
 
- angular.module('trainingPlatformApp').component('dashboard', {
+ angular.module('trainingPlatformApp')
+   .component('dashboard', {
      templateUrl: '/views/dashboard.html',
-     controller: DashboardController
-	});
+     bindings: {
+       courses: '=',
+       hires: '=',
+       general: '=',
+       knowledge: '=',
+       tech: '=',
+       compliance: '='
+     },
+     controller: DashboardCtrl
+   });
 
-function DashboardController($scope,$http,$sce,$location) {
+function DashboardCtrl($scope,$http,$sce,$location) {
 	$scope.score = 0;
 	$scope.activeCourse = -1;
 	$scope.activeCourseAnswered = 0;
@@ -20,8 +29,6 @@ function DashboardController($scope,$http,$sce,$location) {
 	});
 	
 	$scope.findCourses = function(courseIndex){
-
-			alert(courseIndex);
 			$scope.menu = 1;
 			$scope.sectionChosen = courseIndex;
 	};
@@ -31,6 +38,17 @@ function DashboardController($scope,$http,$sce,$location) {
 	};
 
 }
+
+'use strict';
+
+/**
+ * @name Dashboard.js
+ * @description Connects the dasboard view and controller together.
+ ******NOT FINISHED*******
+ */
+
+
+
 
 /**
  * @name Dashboard.js
