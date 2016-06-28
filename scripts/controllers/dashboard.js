@@ -7,7 +7,9 @@
  */
 
 function DashboardCtrl() {
-
+  this.training = function(slideURL,$scope,$location) {
+    $location.path('/course');
+  }
 }
 
  angular.module('trainingPlatformApp')

@@ -155,16 +155,16 @@
    };
 
    //Will update later
-   /*this.googleLogin = function() {
+   this.googleLogin = function() {
      auth.$authWithOAuthRedirect("google", {
        remember: "sessionOnly",
        scope: "email"
      }).then(function() {
-       $location.path('/dashboard');
+       $location.path('/');
      }).catch((function(err) {
        $scope.message = err.code;
      }).bind(this));
-   };*/
+   };
  }
 
  /**

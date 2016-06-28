@@ -9,34 +9,34 @@
         <div class="quiz container" >
             <h3>New Hire</h3>
             <ul class = "list-group">
-                <a class="list-group-item" href="#/course" ng-repeat="hire in $ctrl.hires" >{{hire.name}}</a>
+                <a class="list-group-item" href="#/course" ng-repeat="hire in $ctrl.hires" ng-click="$ctrl.training(hire.code)">{{hire.name}}</a>
             </ul>
         </div>
 
         <div class="quiz container" >
             <h3>Compliance</h3>
             <ul class = "list-group">
-                <a class="list-group-item" href="" ng-repeat="compliance in $ctrl.compliance" >{{compliance.name}}</a>
+                <a class="list-group-item" href="" ng-repeat="compliance in $ctrl.compliance" ng-click="$ctrl.training(compliance.code)">{{compliance.name}}</a>
             </ul>
         </div>
         
         <div class="quiz container" >
             <h3>Technical</h3>
             <ul class = "list-group">
-                <a class="list-group-item" href="#/course" ng-repeat="tech in $ctrl.tech" >{{tech.name}}</a>
+                <a class="list-group-item" href="#/course" ng-repeat="tech in $ctrl.tech" ng-click="$ctrl.training(tech.code)">{{tech.name}}</a>
             </ul>
         </div>
 
         <div class="quiz container" >
             <h3>Knowledge Bank</h3>
             <ul class = "list-group">
-                <a class="list-group-item" href="#/course" ng-repeat="knowledge in $ctrl.hires" >{{knowledge.name}}</a>
+                <a class="list-group-item" href="#/course" ng-repeat="knowledge in $ctrl.knowledge" ng-click="$ctrl.training(hire.code)">{{knowledge.name}}</a>
             </ul>
         </div>
         <div class="quiz container" >
             <h3>General Operations</h3>
             <ul class = "list-group">
-                <a class="list-group-item" href="#/course" ng-repeat="general in $ctrl.general" >{{general.name}}</a>
+                <a class="list-group-item" href="#/course" ng-repeat="general in $ctrl.general" ng-click="$ctrl.training(hire.name)">{{general.name}}</a>
             </ul>
         </div>
     </div>

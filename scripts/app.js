@@ -63,7 +63,8 @@ var app = angular
               return $firebaseArray(query).$loaded();
             });
           },
-
+          
+          //New hire courses
           hires: function(fbRef,$firebaseArray,auth) {
             return auth.$requireAuth().then(function() {
               var query = fbRef.getNewHireRef().orderByChild("name");
@@ -71,13 +72,15 @@ var app = angular
             });
           },
 
+          //Technical courses
           tech: function(fbRef,$firebaseArray,auth) {
             return auth.$requireAuth().then(function() {
               var query = fbRef.getTechnicalRef().orderByChild("name");
               return $firebaseArray(query).$loaded();
             });
           },
-
+          
+          //Compliance courses
           compliance: function(fbRef,$firebaseArray,auth) {
             return auth.$requireAuth().then(function() {
               var query = fbRef.getComplianceRef().orderByChild("name");
@@ -85,13 +88,15 @@ var app = angular
             });
           },
 
+          //Knowledge Bank Courses
           knowledge: function(fbRef,$firebaseArray,auth) {
             return auth.$requireAuth().then(function() {
               var query = fbRef.GetKnowledgeRef().orderByChild("name");
               return $firebaseArray(query).$loaded();
             });
           },
-
+          
+          //General Operations Courses
           general: function(fbRef,$firebaseArray,auth) {
             return auth.$requireAuth().then(function() {
               var query = fbRef.getGeneralOpsRef().orderByChild("name");
