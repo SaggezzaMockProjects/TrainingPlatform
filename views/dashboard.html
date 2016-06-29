@@ -7,21 +7,24 @@
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/custom.css" />
 	<link rel="stylesheet" href="styles/dashboard.css"/>
 </head>
-
 	<div id="dashboard">
 			<center><h3>Pick a course below to continue.</h3><br><br></center>
 	</div>
 
     <div>
-        
         <div class="quiz container" ng-repeat="course in $ctrl.courses">
         <strong><p align="center">{{course.$id}}</p></strong>
 
             <ul class = "list-group dashboard" ng-repeat="class in course">
        
-                <a class="list-group-item dashboard" href="#/course" " ng-click="$ctrl.training(course)">{{class.name}}</a>
+                <a class="list-group-item dashboard" ng-click="passCourse(class.name)">{{class.name}}</a>
+
 
             </ul>
+
+
+            <hr>
+
         </div>
 
     </div>

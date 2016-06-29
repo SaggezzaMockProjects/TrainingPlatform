@@ -5,11 +5,31 @@ function CourseCtrl($scope, $sce) {
 
 
   $scope.source2=$sce.trustAsResourceUrl("https://docs.google.com/a/saggezza.com/presentation/d/13CRp5_Cd3d3hC6Tuz4c6JoCGURR8Df23SJk-Of_55xg/embed?start=false&loop=false&delayms=3000");
+
+$scope.openCourse = function(courseName) {
+    alert("hey");
+    $location.path('#course');
+  };
+
+
+
+
+  $scope.$on("myEvent", function (event, args) {
+   $scope.rest_id = args.courseName;
+   $scope.getMainCategories();
+   alert(args.courseName);
+   $location.path('#course');
+  });
+
+
 }
+
+
 
 angular.module('trainingPlatformApp')
    .component('course', {
      templateUrl: '/views/course.html',
+
        bindings: {
        courses: '=',
        hires: '=',

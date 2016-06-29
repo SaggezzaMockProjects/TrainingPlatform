@@ -18,6 +18,18 @@ function DashboardCtrl($scope,$http,$sce,$location) {
   this.training = function(slideURL,$scope,$location) {
     $location.path('/course');
   }
+
+  $scope.passCourse = function(courseName) {
+    alert(courseName);
+    $location.path('/course');
+  }
+
+
+  $scope.initCourse = function(InCourseName){
+    alert(InCourseName)
+   $scope.$broadcast("myEvent", {courseName: InCourseName });
+  };
+
 }
 
  angular.module('trainingPlatformApp')

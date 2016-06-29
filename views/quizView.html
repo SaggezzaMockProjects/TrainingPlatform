@@ -7,16 +7,9 @@
 
 <body>
 	<div id="quiz">
-		<div class="intro {{ (activeQuestion > -1) ? 'inactive' : 'active' }}">
-			<h2>Welcome</h2>
-			<p>Click begin to test your knowledge on Millenials!</p>
-			<p class="btn" ng-click="activeQuestion = 0">Begin</p>
-		</div>
-
-		<div class="question 
-			{{ $index === activeQuestion ? 'active' : 'inactive' }}
-			{{ question.questionState === 'answered' ? 'answered' : 'unanswered' }}
-			" ng-repeat="question in questions">
+	
+	<div align="center">
+		<div class="question" ng-repeat="question in questions">
 
 			<p class="txt">{{question.question}}</p>
 			<p class="ans" 
@@ -29,12 +22,16 @@
 					{{Answer.text}}
 			</p>
 
-			<div class="feedback">
-				<p ng-show="question.correctness === 'correct'">You are <strong>correct!</strong></p>
-				<p ng-show="question.correctness === 'incorrect'"><strong>Incorrect!</strong></p>
-				<div class="btn" ng-click="selectContinue()">Continue</div>
-			</div>	
 		</div>
+
+		<div  class="question">
+			<p class="btn" ng-click = "redirectToDashboard()">Dashboard</p>
+			<p class="btn" ng-click = "restartQuiz()" >Try Again</p>
+		</div>
+	</div>
+
+	
+	</div>
 
 	<div class="results
 		{{ (activeQuestion === questions.length) ? 'active' : 'inactive' }}">
@@ -45,6 +42,8 @@
 		<p class="btn" ng-click = "redirectToDashboard()" ng-model = "dashboard">Dashboard</p>
 		<p class="btn" ng-click = "restartQuiz()" ng-model = "quiz">Try Again</p>
 	</div>
+
+
 
 </body>
 </html>
