@@ -18,18 +18,8 @@ function QuizController($scope,$http,$sce,$location) {
 
 		if(questionState !== 'answered'){
 			$scope.questions[qIndex].selectedAnswer = aIndex;
-			var correctAnswer =  $scope.questions[qIndex].correct;
-			$scope.questions[qIndex].correctAnswer = correctAnswer;
 
-			if(aIndex === correctAnswer){
-				$scope.questions[qIndex].correctness =  'correct';
-				$scope.score += 1;
-			}
-			else{
-				$scope.questions[qIndex].correctness =  'incorrect';
-
-			}
-			$scope.questions[qIndex].questionState = 'answered';
+			$scope.questions[qIndex].questionState = 'correct';
 			$scope.activeQuestionAnswered += 1;
 		}
 	};
@@ -73,5 +63,3 @@ angular.module('trainingPlatformApp').component('quiz', {
 	templateUrl: '/views/quizView.html',
 	controller: QuizController
 });
-	   
-

@@ -1,45 +1,23 @@
 <!DOCTYPE HTML>
-<html  id="dashboard">
+<html>
 
-<head>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/custom.css" />
-</head>
 <nav></nav>
 
+<head>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/custom.css" />
+	<link rel="stylesheet" href="styles/dashboard.css"/>
+</head>
+
 <body>
+	<div id="dashboard">
+	    <center><h3>Pick a course below to continue.</h3><br><br></center>
+	</div>
+
     <div>
-        <p><center>Pick a course below to continue.</center></p>
-        <div class="quiz container" >
-            <h3>New Hire</h3>
-            <ul class = "list-group">
-                <a class="list-group-item" href="#/course" ng-repeat="hire in $ctrl.hires" ng-click="$ctrl.training(hire.code)">{{hire.name}}</a>
-            </ul>
-        </div>
-
-        <div class="quiz container" >
-            <h3>Compliance</h3>
-            <ul class = "list-group">
-                <a class="list-group-item" href="" ng-repeat="compliance in $ctrl.compliance" ng-click="$ctrl.training(compliance.code)">{{compliance.name}}</a>
-            </ul>
-        </div>
-        
-        <div class="quiz container" >
-            <h3>Technical</h3>
-            <ul class = "list-group">
-                <a class="list-group-item" href="#/course" ng-repeat="tech in $ctrl.tech" ng-click="$ctrl.training(tech.code)">{{tech.name}}</a>
-            </ul>
-        </div>
-
-        <div class="quiz container" >
-            <h3>Knowledge Bank</h3>
-            <ul class = "list-group">
-                <a class="list-group-item" href="#/course" ng-repeat="knowledge in $ctrl.knowledge" ng-click="$ctrl.training(hire.code)">{{knowledge.name}}</a>
-            </ul>
-        </div>
-        <div class="quiz container" >
-            <h3>General Operations</h3>
-            <ul class = "list-group">
-                <a class="list-group-item" href="#/course" ng-repeat="general in $ctrl.general" ng-click="$ctrl.training(hire.name)">{{general.name}}</a>
+        <div class="quiz container" ng-repeat="course in $ctrl.courses">
+        <strong><p align="center">{{course.$id}}</p></strong>
+            <ul class = "list-group dashboard" ng-repeat="class in course">
+                <a class="list-group-item dashboard" ng-click="passCourse(class)" href = "">{{class.name}}</a>
             </ul>
         </div>
     </div>

@@ -6,7 +6,7 @@ body {
 
 #quiz {
    font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 400;
-	width: 650px; height: 650px;
+	width: 100%; 
 	position: relative;
 	overflow: hidden;
 	color: #000;
@@ -49,23 +49,24 @@ body {
 	background-color: #00004d;
 	color: #fff;
 	text-decoration: none;
-
-	padding: 5px 15px;
+	width: 35%;
+	padding-left: 3%
+	padding-right: 3%;
 	border-radius: 6px;
 
 }
 
 /* INtro */
-#quiz .intro {position: absolute; top: 150px; left: 660px; width: 550px;}
+#quiz .intro {
+	position: relative; 
+}
 
 #quiz .intro p {margin: 0px 0px 40px 0px;}
 
 #quiz .question {
-	width: 550px;
-	position: absolute;
-	top: 150px;
-	left: -1350px;
-	
+	position: relative;
+	padding-bottom: 75px;
+	width: 50%
 }
 
 #quiz .question .txt {
@@ -75,16 +76,18 @@ body {
 #quiz .question .ans {
 	display: inline-block;
 	font-size: 1.1em;
-	width: 225px;
-	border: 2px solid rgba(0,0,0,.4);
+	width: 45%;
+	border: 4px solid rgba(0,0,0,.4);
 	border-radius: 6px;
 	padding: 10px;
-	margin: 0px 15px 15px 0px;
+	margin: 1% 1% 1% 1%;
 	position: relative;
+	cursor: pointer
 }
 
 #quiz .question .ans.selected {
-	border-color: #be4b16;
+	border-color: #000066;
+	background-color: #e6e6e6;
 
 }
 
@@ -104,9 +107,9 @@ body {
 	right: 5px;
 }
 
-#quiz .question .ans.selected::after {
+/*#quiz .question .ans.selected::after {
 	background-image: url(../images/icon_incorrect.svg);
-}
+}*/
 
 #quiz .question .ans.correct::after {
 	background-image: url(../images/icon_correct.svg);
@@ -228,6 +231,3 @@ body {
 #quiz li a:hover {
     background-color: #111;
 }
-
-
-

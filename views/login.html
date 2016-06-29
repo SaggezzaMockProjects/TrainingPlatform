@@ -3,11 +3,8 @@
 <!--<div ng-hide = "$ctrl.loggedIn">-->
  <span>
     <div class="jumbotron">
-
       <img src = "images/saggezzainstitute.png" alt = "Saggezza Institute">
-          
-          <img src='images/background.jpg' style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
-
+      <img src='images/background.jpg' style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
       <p> "Knowledge Takes Us Further" </p>
     </div>
   </span>
@@ -20,7 +17,7 @@
     <div class = "alert alert-success" ng-show = "successMessage" >
       <p>{{successMessage}}</p>
     </div>
-    <div style="float: right;"><a href = "" ng-click = $ctrl.registerUser()> Not Signed Up?</a></div>
+    <div style="float: right;"><a href = "" ng-click = $ctrl.registerUser() style="color: #0000ff"> Not Signed Up?</a></div>
 
     <form name="loginForm" role="form" ng-submit="$ctrl.login(user)">
         <div class="form-group">
@@ -35,8 +32,8 @@
             <button type="submit" value = "submit" class="btn btn-primary">Login</button>
         </div>
     </form>
-    <div style="float: right;"><a href = "" ng-click = "$ctrl.forgotPassword()"> Forgot Password? </a></div>
-    <div<button type="submit" value = "submit" class="btn btn-primary" ng-click = "$ctrl.googleLogin()">Google</button>
+    <div style="float: right;" ><a href = "" ng-click = "$ctrl.forgotPassword()" style="color: #0000ff"> Forgot Password? </a></div>
+    <!--<button type="submit" value = "submit" class="btn btn-primary" ng-click = "$ctrl.googleLogin()">Google</button>-->
   </div>
 
 </div>
