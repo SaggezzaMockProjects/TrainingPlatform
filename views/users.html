@@ -24,7 +24,7 @@
                 <td>{{user.email}}</td>
                 <td ng-repeat = "course in $ctrl.courses" >0</td>
                 <td><button class="btn btn-success glyphicon glyphicon-plus-sign" ng-click = "$ctrl.promoteUser(user)"></button></td>
-                <td><button class="btn btn-danger glyphicon glyphicon-remove" ng-click = "$ctrl.deleteUser(user)"></button><td>
+                <td><button class="btn btn-danger glyphicon glyphicon glyphicon-trash" ng-click = "$ctrl.deleteUser(user)"></button><td>
             </tr>
         </tbody>
 </body>

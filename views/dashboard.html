@@ -17,7 +17,7 @@
         <div class="quiz container" ng-repeat="course in $ctrl.courses">
         <strong><p align="center">{{course.$id}}</p></strong>
             <ul class = "list-group dashboard" ng-repeat="class in course">
-                <a class="list-group-item dashboard" ng-click="passCourse(class)" href = "">{{class.name}}</a>
+                <a class="list-group-item dashboard" ng-click="passCourse(class,course.$id)" href = "">{{class.name}}</a>
             </ul>
         </div>
     </div>

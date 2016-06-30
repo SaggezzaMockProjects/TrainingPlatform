@@ -3,7 +3,6 @@
 /**
  * @name Dashboard.js
  * @description Connects the dasboard view and controller together.
- ******NOT FINISHED*******
  */
 
 function DashboardCtrl($scope,$http,$sce,$location,courseService) {
@@ -15,21 +14,13 @@ function DashboardCtrl($scope,$http,$sce,$location,courseService) {
   $scope.menu = 0;
   $scope.sectionChosen = -1;
 
-  this.training = function(slideURL,$scope,$location) {
-    $location.path('/course');
-  };
-
-  $scope.passCourse = function(course) {
+  $scope.passCourse = function(course,category) {
     courseService.setCourseName(course.name);
     courseService.setCourseId(course.code);
+    courseService.setCategory(category);
+    
     $location.path('/course');
   };
-
-
-  $scope.initCourse = function(InCourseName){
-    $scope.$broadcast("myEvent", {courseName: InCourseName });
-  };
-
 }
 
  angular.module('trainingPlatformApp')
@@ -37,31 +28,34 @@ function DashboardCtrl($scope,$http,$sce,$location,courseService) {
      templateUrl: '/views/dashboard.html',
      bindings: {
        courses: '=',
-       hires: '=',
-       general: '=',
-       knowledge: '=',
-       tech: '=',
-       compliance: '='
      },
      controller: DashboardCtrl
-   }).service('courseService',function() {
-     var _courseId = "1";
-     var _courseName = "Course";
+   }).service('courseService',function($cookies) {
+      $cookies.put('courseId',"1");
+      $cookies.put('courseName',"Course");
+      $cookies.put('category',"something");
 
-     this.getCourseId = function() {
-       return _courseId;
-     };
+      this.getCourseId = function() {
+        return $cookies.get('courseId');
+      };
 
-     this.setCourseId = function(value) {
-       _courseId = value;
-       console.log(_courseId);
-     };
+      this.setCourseId = function(value) {
+        $cookies.put('courseId',value);
+      };
 
-     this.getCourseName = function() {
-       return _courseName;
-     };
+      this.getCategory = function() {
+        return $cookies.get('category');
+      };
 
-     this.setCourseName = function(value) {
-       _courseName = value;
-     };
+      this.setCategory = function(value) {
+        $cookies.put('category',value);
+      };
+
+      this.getCourseName = function() {
+        return $cookies.get('courseName');
+      };
+
+      this.setCourseName = function(value) {
+        $cookies.put('courseName',value);
+      };
    });

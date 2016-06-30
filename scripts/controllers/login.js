@@ -3,6 +3,10 @@
  * @name login.js
  * @description Validates the login credentials through Firebase API.
  */
+
+ /**
+  * Set Admin access throughout the application.
+  */
  function SetAdminAccess(authData,fbRef,userService) {
    fbRef.getAdminRef().child(authData.uid).once("value", function(snapshot) {
      if(snapshot.val()) {
@@ -13,6 +17,9 @@
   });
  }
 
+ /**
+  * Forgot Password 
+  */
  function ForgotPasswordCtrl(auth,$location,$scope,ngDialog) {
    
    $scope.forgotPassword = function(user) {
@@ -35,8 +42,11 @@
      }).bind(this));
    };
  }
-
- function RegisterCtrl(auth,$location,$scope,ngDialog, fbRef) {
+ 
+ /**
+  * Registration
+  */
+ function RegisterCtrl(auth,$location,$scope,ngDialog, fbRef, userService) {
    //Triggers when user presses sign up button
    $scope.register = function(user) {
      if(!user) {
@@ -96,7 +106,9 @@
      }).bind(this));
    };
  }
-
+ /**
+  * Reset Password
+  */
  function UpdatePasswordCtrl(auth, $location, ngDialog, $scope, email, tempPass) {
    $scope.updatePassword = function(user) {
      
@@ -146,6 +158,7 @@
      }).then(function(authData) {
        
        SetAdminAccess(authData,fbRef,userService);
+       userService.setUserId(authData.uid);
        //Temporary password->redirect to update password
        if(authData.password.isTemporaryPassword) {
          ngDialog.open({
@@ -209,15 +222,23 @@
        currentAuth: '='
      },
      controller: LoginCtrl
-   }).service('userService', function() {
-     var _isAdmin = false;
+   }).factory('userService', function($cookies) {
+     $cookies.put('isAdmin',false);
+     $cookies.put('uid','1');
 
-     this.getIsAdmin = function() {
-       return _isAdmin;
+     return {   
+      getIsAdmin: function() {
+        return $cookies.get('isAdmin');
+      },
+      setIsAdmin: function(value) {
+        $cookies.put('isAdmin',value);
+      },
+
+      getUserId: function() {
+        return $cookies.get('uid');
+      },
+      setUserId: function(value) {
+        $cookies.put('uid',value);
+      }
      };
-
-     this.setIsAdmin = function(value) {
-       _isAdmin = value;
-     };
-
    });

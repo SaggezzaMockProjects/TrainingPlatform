@@ -12,7 +12,6 @@
  * @TODO
  * More advanced form validations/error messages on login, register, and forgot password
  * Administrator account: <admin>
- *  View all users - SUPER EASY WITH FIREBASE DB
  *    *Remove users---NEED TO UPDATE API
  *    *View user's progress on training
  * </admin>
@@ -36,7 +35,8 @@ var app = angular
     'ui.router',
     'ngRoute',
     'firebase',
-    'ngDialog'
+    'ngDialog',
+    'ngCookies'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -50,52 +50,12 @@ var app = angular
         }
       })
       .when('/', {
-        template: '<dashboard courses="$resolve.courses" hires="$resolve.hires" tech="$resolve.tech" compliance="$resolve.compliance" knowledge="$resolve.knowledge" general="$resolve.general"></dashboard>',
+        template: '<dashboard courses="$resolve.courses"></dashboard>',
         resolve: {
           //Require authentication and gather all the courses
           courses: function(fbRef,$firebaseArray,auth) {
             return auth.$requireAuth().then(function() {
               var query = fbRef.getCoursesRef().orderByChild("name");
-              return $firebaseArray(query).$loaded();
-            });
-          },
-          
-          //New hire courses
-          hires: function(fbRef,$firebaseArray,auth) {
-            return auth.$requireAuth().then(function() {
-              var query = fbRef.getNewHireRef().orderByChild("name");
-              return $firebaseArray(query).$loaded();
-            });
-          },
-
-          //Technical courses
-          tech: function(fbRef,$firebaseArray,auth) {
-            return auth.$requireAuth().then(function() {
-              var query = fbRef.getTechnicalRef().orderByChild("name");
-              return $firebaseArray(query).$loaded();
-            });
-          },
-          
-          //Compliance courses
-          compliance: function(fbRef,$firebaseArray,auth) {
-            return auth.$requireAuth().then(function() {
-              var query = fbRef.getComplianceRef().orderByChild("name");
-              return $firebaseArray(query).$loaded();
-            });
-          },
-
-          //Knowledge Bank Courses
-          knowledge: function(fbRef,$firebaseArray,auth) {
-            return auth.$requireAuth().then(function() {
-              var query = fbRef.GetKnowledgeRef().orderByChild("name");
-              return $firebaseArray(query).$loaded();
-            });
-          },
-          
-          //General Operations Courses
-          general: function(fbRef,$firebaseArray,auth) {
-            return auth.$requireAuth().then(function() {
-              var query = fbRef.getGeneralOpsRef().orderByChild("name");
               return $firebaseArray(query).$loaded();
             });
           }
@@ -150,6 +110,22 @@ var app = angular
           //Require authentication before going to this view
           currentAuth: function(auth) {
             return auth.$requireAuth();
+          }
+        }
+      })
+      .when('/createcourse', {
+        template: '<createcourse courses="$resolve.courses"></createcourse>',
+        resolve: {
+          //Require authentication before going to this view
+          currentAuth: function(auth) {
+            return auth.$requireAuth();
+          },
+           //Require authentication and gather all the courses
+          courses: function(fbRef,$firebaseArray,auth) {
+            return auth.$requireAuth().then(function() {
+              var query = fbRef.getCoursesRef().orderByChild("name");
+              return $firebaseArray(query).$loaded();
+            });
           }
         }
       })
