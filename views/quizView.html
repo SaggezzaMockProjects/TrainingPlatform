@@ -8,42 +8,44 @@
 <body>
 	<div id="quiz">
 	
-	<div align="center">
-		<div class="question" ng-repeat="question in questions">
+		<div align="center">
+			<div class="question 
+			{{ (percentage > -1) ? 'inactive' : 'active' }}" ng-repeat="question in questions">
 
-			<p class="txt">{{question.question}}</p>
-			<p class="ans" 
+				<p class="txt">{{question.question}}</p>
+				<p class="ans" 
 
-				ng-class="{ selected:isSelected($parent.$index,$index),
-				correct:isCorrect($parent.$index,$index) }"
+					ng-class="{ selected:isSelected($parent.$index,$index),
+					correct:isCorrect($parent.$index,$index) }"
 
-				ng-click="selectAnswer($parent.$index,$index)"
-				ng-repeat="Answer in questions[$index].answers">
-					{{Answer.text}}
-			</p>
+					ng-click="selectAnswer($parent.$index,$index)"
+					ng-repeat="Answer in questions[$index].answers">
+					
+						{{Answer.text}}
+				</p>
 
+			</div>
+
+			<div  class="question {{ (percentage > -1) ? 'inactive' : 'active' }}">
+				<p class="btn" ng-click ="redirectToDashboard()">Dashboard</p>
+				<p class="btn" ng-click ="submitQuiz()" >Submit</p>
+			</div>
 		</div>
 
-		<div  class="question">
-			<p class="btn" ng-click = "redirectToDashboard()">Dashboard</p>
-			<p class="btn" ng-click = "restartQuiz()" >Try Again</p>
+
+		<div class="results
+			{{ (percentage > -1) ? 'active' : 'inactive' }}">
+		
+			<h3>Results</h3>
+			<p>You scored {{score / questions.length * 100 | number:0}}% by answering 		{{score}} of the total {{questions.length}} questions.</p>
+
+			<p class="btn" ng-click = "redirectToDashboard()" ng-model = "dashboard">		Dashboard</p>
+			<p class="btn"  ng-model = "quiz">Submit</p>
 		</div>
+
 	</div>
 
 	
-	</div>
-
-	<div class="results
-		{{ (activeQuestion === questions.length) ? 'active' : 'inactive' }}">
-		
-		<h3>Results</h3>
-		<p>You scored {{score / questions.length * 100 | number:0}}% by answering {{score}} of the total {{questions.length}} questions.</p>
-
-		<p class="btn" ng-click = "redirectToDashboard()" ng-model = "dashboard">Dashboard</p>
-		<p class="btn" ng-click = "restartQuiz()" ng-model = "quiz">Try Again</p>
-	</div>
-
-
 
 </body>
 </html>

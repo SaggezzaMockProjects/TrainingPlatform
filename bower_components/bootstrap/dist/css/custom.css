@@ -26,6 +26,7 @@
 	border-radius: 6px;
 	background-color: #000033;
 	color: #fff;
+		cursor: pointer;
 }
 
 .dashboard.title {
