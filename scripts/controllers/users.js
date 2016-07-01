@@ -34,6 +34,22 @@
  }
 
  function UsersCtrl(ngDialog,fbRef) {
+     //var usersObj = [];
+     /*fbRef.getComplianceRef().on("value",function(snapshot) {
+         snapshot.forEach(function(childSnapShot) {
+             childSnapShot.forEach(function(smallChildSnapShot) {
+                 
+             });
+         });
+     });*/
+
+     
+     /*fbRef.getCoursesRef().on("value", function(snapshot) {
+         snapshot.forEach(function(childSnapShot) {
+             childSnapShot.child("users")
+         });
+     });*/
+
      //Delete user from database 
      this.deleteUser = function(user) {
         OpenDialog(user,"delete",ngDialog,"Delete",fbRef);

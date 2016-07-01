@@ -172,6 +172,22 @@ body {
 	width: 550px;
 }
 
+#quiz .results.active {
+	position: absolute;
+	top: 125px;
+	left: 10%;
+	width: 550px;
+	visibility: visible;
+}
+
+#quiz .results.inactive {
+	position: absolute;
+	top: 125px;
+	left: 200%;
+	width: 550px;
+	visibility: hidden;
+}
+
 #quiz .results .share {
 	margin-top: 40px;
 }
@@ -202,7 +218,15 @@ body {
 	background-size: 25px 25px;
 }
 
-#quiz .active, #quiz .inactive { transition: left .7s ease-in-out; }
+#quiz .active { 
+	transition: left .7s ease-in-out; 
+	visibility: visible;
+}
+
+#quiz .inactive { 
+	transition: left .7s ease-in-out; 
+	visibility: hidden;
+}
 
 #quiz .active { left: 40px; }
 
@@ -231,3 +255,6 @@ body {
 #quiz li a:hover {
     background-color: #111;
 }
+
+
+

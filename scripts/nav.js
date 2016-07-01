@@ -7,6 +7,7 @@
 
 function NavCtrl(userService,$scope) {
   $scope.isAdmin = userService.getIsAdmin();
+  $scope.name = userService.getUserName();
 }
 
 angular.module('trainingPlatformApp').component('nav', {

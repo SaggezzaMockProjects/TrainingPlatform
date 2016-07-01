@@ -12,7 +12,7 @@
      if(snapshot.val()) {
        userService.setIsAdmin(true);
      } else {
-       userService.setIsAdmin(false);
+       userService.setIsAdmin(undefined);
      }
   });
  }
@@ -77,6 +77,8 @@
         if(authData === null){
           return false;
         }
+        var name = user.firstName + " " + user.lastName;
+        userService.setUserName(name);
         fbRef.getUsersRef().child(authData.uid).once("value", function(snapshot) {
           if(!snapshot.val()) {
             //Save new user data in Users table
@@ -223,8 +225,9 @@
      },
      controller: LoginCtrl
    }).factory('userService', function($cookies) {
-     $cookies.put('isAdmin',false);
+     $cookies.put('isAdmin',undefined);
      $cookies.put('uid','1');
+     $cookies.put('userName',"Name");
 
      return {   
       getIsAdmin: function() {
@@ -239,6 +242,13 @@
       },
       setUserId: function(value) {
         $cookies.put('uid',value);
-      }
+      },
+
+      getUserName: function() {
+        return $cookies.get('userName');
+      },
+      setUserName: function(value) {
+        $cookies.put('userName',value);
+      },
      };
    });

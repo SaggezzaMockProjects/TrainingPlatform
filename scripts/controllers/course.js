@@ -2,6 +2,7 @@
 
 function CourseCtrl($scope, $sce,$location,courseService,userService) {
   $scope.source = $sce.trustAsHtml(courseService.getCourseId());
+  $scope.name = courseService.getCourseName();
   console.log(userService.getUserId());
 }
 
