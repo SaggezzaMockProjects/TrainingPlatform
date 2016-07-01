@@ -1,9 +1,19 @@
+/**
+ * @name course.js
+ * @description Controller for the course page. 
+ */
+
 'use strict';
 
-function CourseCtrl($scope, $sce,$location,courseService,userService) {
+/**
+ * @name: CourseCtrl
+ * @description: Controller for the courses. Gets the slide's embed code from Google Drive
+ * and injects it into the course's html code. This function controls the specific training's 
+ * video/powerpoint/etc.
+ */
+function CourseCtrl($scope, $sce,$location,courseService) {
   $scope.source = $sce.trustAsHtml(courseService.getCourseId());
   $scope.name = courseService.getCourseName();
-  console.log(userService.getUserId());
 }
 
 angular.module('trainingPlatformApp')

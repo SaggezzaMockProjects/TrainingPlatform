@@ -1,29 +1,9 @@
 'use strict';
 
 /**
- * !!!!!!!!!!IMPORTANT!!!!!!!!
- * We used firebase as for our realtime cloud database.
- * https://www.firebase.com/
- * AngularFire is the API used to communicate with firebase.
- * https://www.firebase.com/docs/web/libraries/angular/
- * https://github.com/firebase/angularfire/blob/master/docs/reference.md#signinwithemailandpasswordemail-password --> AngularFire 2.
- *        We're still using angularfire 1.x.x
- * Also used bootstrap for UI.
- * @TODO
- * More advanced form validations/error messages on login, register, and forgot password
- * Administrator account: <admin>
- *    *Remove users---NEED TO UPDATE API
- *    *View user's progress on training
- * </admin>
- *
- * Users account: <user>
- *  View/complete all trainings which notifies admin that one has been completed
- *  EMAIL CONFIRMATION. There is a 'hack' that could be used with angularfire.
- *  http://andreasmcdermott.com/web/2014/02/05/Email-verification-with-Firebase/
- * </user>
- *
- *
+ * Main application java script file. Handle routes here.
  */
+
 var app = angular
   .module('trainingPlatformApp', [
     'ngAnimate',

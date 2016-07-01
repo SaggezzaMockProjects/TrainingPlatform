@@ -1,9 +1,33 @@
+/**
+ * @name users.js
+ * @description controller for the user's page
+ */
+
 'use strict';
+
+/**
+ * @name ConfirmUserDialogCtrl
+ * @description Confirmation Dialog Controller
+ * @param
+ *  name-The name of the user being selected
+ *  message-The message you want to display in the dialog
+ */
  function ConfirmUserDialogCtrl($scope,name,message) {
     $scope.message = message;
     $scope.name = name;
  }
  
+ /**
+  * @name OpenDialog
+  * @description Opens the confirmation dialog
+  * Deletes and promote user in the DB
+  * @param
+  *  user-the user information 
+  *  wording-message to be sent by the dialog
+  *  ngDialog-Module for the dialog
+  *  action- what the dialog is being used for
+  *  fbRef- Reference to the Firebase DB
+  */
  function OpenDialog(user,wording,ngDialog,action,fbRef) {
     //Confirm dialog
     ngDialog.openConfirm({

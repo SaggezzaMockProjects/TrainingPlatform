@@ -1,6 +1,11 @@
 <html>
+<!-- Shows all users-->
+
+<!--Show nav-->
 <nav></nav>
 <body>
+
+    <!--Error/Success messages -->
     <div class = "alert alert-danger" ng-show = "failedMessage" >
       <p>{{failedMessage}}</p>
     </div>
@@ -8,6 +13,7 @@
       <p>{{successMessage}}</p>
     </div>
 
+    <!--Table containing all users -->
     <table class = "table table-striped table-responsive">
         <thead class = "thead">
             <tr>

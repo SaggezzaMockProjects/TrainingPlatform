@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * @name ProfileCtrl
+ * @description Does nothing for now. Something to implement in future for each user.
+ */
 
  function ProfileCtrl() {
 
