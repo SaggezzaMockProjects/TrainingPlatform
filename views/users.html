@@ -1,4 +1,31 @@
 <html>
 <nav></nav>
-<h1> Users </h1>
+<body>
+    <div class = "alert alert-danger" ng-show = "failedMessage" >
+      <p>{{failedMessage}}</p>
+    </div>
+    <div class = "alert alert-success" ng-show = "successMessage" >
+      <p>{{successMessage}}</p>
+    </div>
+
+    <table class = "table table-striped table-responsive">
+        <thead class = "thead">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th ng-repeat ="course in $ctrl.courses">{{course.$id}}</th>
+                <th>Make Admin</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in $ctrl.users">
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td ng-repeat = "score in $ctrl.courses">0</td>
+                <td><button class="btn btn-success glyphicon glyphicon-plus-sign" ng-click = "$ctrl.promoteUser(user)"></button></td>
+                <td><button class="btn btn-danger glyphicon glyphicon glyphicon-trash" ng-click = "$ctrl.deleteUser(user)"></button><td>
+            </tr>
+        </tbody>
+</body>
 </html>

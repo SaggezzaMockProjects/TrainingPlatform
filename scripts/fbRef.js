@@ -3,7 +3,7 @@
 angular.module('trainingPlatformApp').factory('fbRef', function(rootRef) {
   return {
     getUsersRef: function() {
-      return rootRef.child('users');
+      return rootRef.child('Users');
     },
     getCoursesRef: function() {
       return rootRef.child('Courses');
@@ -22,6 +22,9 @@ angular.module('trainingPlatformApp').factory('fbRef', function(rootRef) {
     },
     GetKnowledgeRef: function() {
       return rootRef.child('Courses').child('Knowledge Bank');
+    },
+    getAdminRef: function() {
+      return rootRef.child('Admins');
     }
   };
 });
