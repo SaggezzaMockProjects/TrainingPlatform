@@ -2,7 +2,7 @@
 
 /**
  * @name auth.js
- * @description Authorizes the Firebase DB and AngularFire API
+ * @description Authenticates a Firebase client
  */
 angular.module('trainingPlatformApp').factory('auth',function($firebaseAuth,rootRef) {
   return $firebaseAuth(rootRef);

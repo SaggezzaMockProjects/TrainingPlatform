@@ -1,5 +1,13 @@
+/**
+ * @name fbRef.js
+ * @description References to each node of the DB
+ */
+
 'use strict';
 
+/**
+ * @description Creates a service/factory to gain access to the DB
+ */
 angular.module('trainingPlatformApp').factory('fbRef', function(rootRef) {
   return {
     getUsersRef: function() {

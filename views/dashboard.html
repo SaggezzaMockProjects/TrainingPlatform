@@ -1,6 +1,9 @@
+<!--Dashboard shows all courses -->
+
 <!DOCTYPE HTML>
 <html>
 
+<!-- Show navbar for this page -->
 <nav></nav>
 
 <head>
@@ -13,6 +16,7 @@
 	    <center><h3>Pick a course below to continue.</h3><br><br></center>
 	</div>
 
+    <!-- Iterate through DB and inject Category names and class names-->
     <div>
         <div class="quiz container" ng-repeat="course in $ctrl.courses">
         <strong><p align="center">{{course.$id}}</p></strong>

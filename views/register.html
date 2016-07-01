@@ -2,12 +2,16 @@
 <!--Registration View-->
 <h1><center> Register </center></h1>
 <body>
+
+  <!--Error/Success Messages -->
   <div class = "alert alert-danger" ng-show = "failedMessage" >
     <p>{{failedMessage}}</p>
   </div>
   <div class = "alert alert-success" ng-show = "successMessage" >
     <p>{{successMessage}}</p>
   </div>
+
+  <!--Registration form-->
   <form ng-submit = "register(registerUser)" name="registerForm" role="form">
     <div class="form-group">
       <label for="email">E-mail</label>

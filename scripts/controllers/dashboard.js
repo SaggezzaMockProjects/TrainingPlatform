@@ -1,19 +1,18 @@
-'use strict';
-
 /**
  * @name Dashboard.js
  * @description Connects the dasboard view and controller together.
  */
 
+'use strict';
+
+
+/**
+ * @name DashboardCtrl
+ * @description Gets the course information from the selected training course
+ */
 function DashboardCtrl($scope,$http,$sce,$location,courseService) {
-  $scope.score = 0;
-  $scope.activeCourse = -1;
-  $scope.activeCourseAnswered = 0;
-  $scope.percentage = 0;
 
-  $scope.menu = 0;
-  $scope.sectionChosen = -1;
-
+  //Get the info from course selected and store them in a service
   $scope.passCourse = function(course,category) {
     courseService.setCourseName(course.name);
     courseService.setCourseId(course.code);
@@ -31,6 +30,8 @@ function DashboardCtrl($scope,$http,$sce,$location,courseService) {
      },
      controller: DashboardCtrl
    }).service('courseService',function($cookies) {
+      /*Stores course information as cookies. Will need to fix this to ensure data isn't lost
+      during refresh*/
       $cookies.put('courseId',"1");
       $cookies.put('courseName',"Course");
       $cookies.put('category',"something");

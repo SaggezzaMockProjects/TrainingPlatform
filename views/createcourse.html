@@ -4,13 +4,15 @@
     <div class = "container">
         <h2><center>Create A Course </center></h2><br>
 
+        <!--Bootstrap error/success messages-->
         <div class = "alert alert-danger" ng-show = "failedMessage" >
             <p>{{failedMessage}}</p>
         </div>
         <div class = "alert alert-success" ng-show = "successMessage" >
             <p>{{successMessage}}</p>
         </div>
-
+        
+        <!--Create course form -->
         <form class = "container" name="createForm" role="form" ng-submit="$ctrl.createCourse(course)">
             <div class="form-group">
                 <label for="category">Category:</label>
@@ -26,7 +28,7 @@
                 <label for="slideId">Google Slides Embedded Code:</label>
                 <textarea rows="5"  name="slideId" ng-model = "course.slideId" class="form-control" required></textarea>
             </div>
-            <form 
+
             <div style = "float: left;" class="form-actions">
                 <button type="submit" value = "submit" class="btn btn-primary">Create Course</button>
             </div>

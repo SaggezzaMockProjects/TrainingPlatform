@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<!--Quiz View -->
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="styles/quiz.css">
@@ -6,14 +7,18 @@
 <nav></nav>
 
 <body>
+
+	<!-- Success and failure messages -->
 	 <div class = "alert alert-success" ng-show = "successMessage" >
       <p align = "center">{{successMessage}}</p>
     </div>
 	<div class = "alert alert-danger" ng-show = "failedQuiz" >
 		<p align = "center">{{failedQuiz}}</p>
 	</div>
+
 	<div id="quiz">
-	
+
+		<!--Show quiz-->
 		<div align="center">
 			<div class="question 
 			{{ (percentage > -1) ? 'inactive' : 'active' }}" ng-repeat="question in questions">
@@ -31,7 +36,8 @@
 				</p>
 
 			</div>
-
+			
+			<!--Failure button if not all questions answered -->
 			<div class = "alert alert-danger" ng-show = "failedMessage" >
       			<p>{{failedMessage}}</p>
     		</div>
@@ -42,13 +48,13 @@
 			</div>
 		</div>
 
-
+		<!--Show results-->
 		<div class="results
 			{{ (percentage > -1) ? 'active' : 'inactive' }}">
 		
 			<h3>Results</h3>
 			<p>You scored {{score / questions.length * 100 | number:0}}% by answering 		
-				{{score}} of the total {{questions.length}} questions.</p>
+				{{score}} of the total {{questions.length}} questions correctly!.</p>
 
 			<p class="btn" ng-click = "redirectToDashboard()" ng-model = "dashboard">Dashboard</p>
 			<p class="btn"  ng-model = "quiz" ng-click = "restartQuiz()">Try Again</p>

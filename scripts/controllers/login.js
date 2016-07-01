@@ -1,11 +1,13 @@
-'use strict';
 /**
  * @name login.js
  * @description Validates the login credentials through Firebase API.
  */
 
+'use strict';
+
  /**
-  * Set Admin access throughout the application.
+  * @name SetAdminAccess
+  * @description Reads the DB to check if the logged in user is an Admin
   */
  function SetAdminAccess(authData,fbRef,userService) {
    fbRef.getAdminRef().child(authData.uid).once("value", function(snapshot) {
@@ -18,7 +20,8 @@
  }
 
  /**
-  * Forgot Password 
+  * @name ForgotPasswordCtrl
+  * @description Resets the user's password and sends a forgot password email 
   */
  function ForgotPasswordCtrl(auth,$location,$scope,ngDialog) {
    
@@ -44,7 +47,8 @@
  }
  
  /**
-  * Registration
+  * @name RegisterCtrl
+  * @description Creates email/password user in the Firebase DB
   */
  function RegisterCtrl(auth,$location,$scope,ngDialog, fbRef, userService) {
    //Triggers when user presses sign up button
@@ -67,7 +71,7 @@
          return false;
        }
      }).then(function() {
-       //Close Dialog and Return to Login page
+       //Close Dialog and return to Login page
        $location.path('/login');
        ngDialog.closeAll();
        $scope.$successMessage = "Successfully Registered.";
@@ -77,11 +81,12 @@
         if(authData === null){
           return false;
         }
+        //Read DB to see if user exists
         var name = user.firstName + " " + user.lastName;
         userService.setUserName(name);
         fbRef.getUsersRef().child(authData.uid).once("value", function(snapshot) {
           if(!snapshot.val()) {
-            //Save new user data in Users table
+            //Save new user data in Users table if they don't exist
             var flName = user.firstName + " " + user.lastName;
             fbRef.getUsersRef().child(authData.uid).set({
               name: flName,
@@ -109,11 +114,13 @@
    };
  }
  /**
-  * Reset Password
+  * @name UpdatePasswordCtrl
+  * @description Updates the user's password
   */
  function UpdatePasswordCtrl(auth, $location, ngDialog, $scope, email, tempPass) {
+  
    $scope.updatePassword = function(user) {
-     
+
      if(!user) {
        return false;
      }
@@ -140,13 +147,17 @@
 
  }
 
+ /**
+  * @name LoginCtrl
+  * @description Authenticates the user's login
+  */
  function LoginCtrl(auth, $location, ngDialog, $scope, fbRef, userService) {
    
    this.loggedIn = !!this.currentAuth;
 
    //Triggers when user presses login button
    this.login = function(user) {
-     //Return if user credentials are empty
+     //Credentials are empty
      if(!user) {
        return false;
      }
@@ -159,8 +170,10 @@
        remember: "sessionOnly"
      }).then(function(authData) {
        
+       //Set cookies to hold user data
        SetAdminAccess(authData,fbRef,userService);
        userService.setUserId(authData.uid);
+
        //Temporary password->redirect to update password
        if(authData.password.isTemporaryPassword) {
          ngDialog.open({
@@ -200,7 +213,7 @@
      });
    };
 
-   //Will update later for google login
+   //Google login -> Almost works
    /*this.googleLogin = function() {
      auth.$authWithOAuthRedirect("google", {
        remember: "sessionOnly",
@@ -225,6 +238,7 @@
      },
      controller: LoginCtrl
    }).factory('userService', function($cookies) {
+     //Stores user information for the session as a cookie
      $cookies.put('isAdmin',undefined);
      $cookies.put('uid','1');
      $cookies.put('userName',"Name");
