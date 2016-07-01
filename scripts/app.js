@@ -1,8 +1,9 @@
 'use strict';
 
 /**
-
+ * Main application java script file. Handle routes here.
  */
+
 var app = angular
   .module('trainingPlatformApp', [
     'ngAnimate',
