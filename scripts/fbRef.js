@@ -1,9 +1,17 @@
+/**
+ * @name fbRef.js
+ * @description References to each node of the DB
+ */
+
 'use strict';
 
+/**
+ * @description Creates a service/factory to gain access to the DB
+ */
 angular.module('trainingPlatformApp').factory('fbRef', function(rootRef) {
   return {
     getUsersRef: function() {
-      return rootRef.child('users');
+      return rootRef.child('Users');
     },
     getCoursesRef: function() {
       return rootRef.child('Courses');
@@ -20,8 +28,15 @@ angular.module('trainingPlatformApp').factory('fbRef', function(rootRef) {
     getGeneralOpsRef: function() {
       return rootRef.child('Courses').child('General Operations');
     },
-    GetKnowledgeRef: function() {
+    getKnowledgeRef: function() {
       return rootRef.child('Courses').child('Knowledge Bank');
+    },
+    getAdminRef: function() {
+      return rootRef.child('Admins');
+    },
+    getParmFourRef: function(one, two, three, four) {
+      return rootRef.child(one).child(two).child(three).child(four);
     }
+
   };
 });

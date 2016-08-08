@@ -1,18 +1,45 @@
+/**
+ * @name quiz.js
+ * @description Controller for the quiz.
+ */
+
 'use strict';
 
-
-function QuizController($scope,$http,$sce,$location) {
+/**
+ * @name QuizController
+ * @param 
+ *  $scope - application model
+ *  $http - Allows access to json file
+ *  $location - redirection
+ *  userService - Cookies that store user information
+ *  courseService - Cookies that store course information
+ *  fbRef - Reference to the Firebase DB
+ * @description
+ * 	
+ */
+function QuizCtrl($scope,$http,$sce,$location,userService,courseService,fbRef) {
 	$scope.score = 0;
 	$scope.activeQuestion = -1;
 	$scope.activeQuestionAnswered = 0;
 	$scope.percentage = -1;
 
+    var courseRef = fbRef.getCoursesRef();
+      courseRef.once("value", function(snapshot) {
+           $scope.test = snapshot.child("Compliance").child("Rules and Regulations").child("questions").child("0").child("correct");
+           $scope.failedMessage = "Course name already taken";
+             });
+    
+
+	//Read data from json file
 	$http.get('../data/quiz_data.json').then(function(quizData){
 		$scope.questions = quizData.data;
 		$scope.totalQuestions = $scope.questions.length;
 	});
 
+	//
 	$scope.selectAnswer = function(qIndex,aIndex){
+
+		$scope.failedMessage = undefined;
 
 		var questionState = $scope.questions[qIndex].questionState;
 
@@ -38,49 +65,44 @@ function QuizController($scope,$http,$sce,$location) {
 	$scope.submitQuiz = function() {
 		$scope.allQuestions = true;
 
-		//var user = authData.uid; 
-
 		for (var i = 0; i < $scope.questions.length; i++) { 
 
 			    if($scope.questions[i].selectedAnswer === undefined)
     			{
     				$scope.allQuestions = false;
     			}
-
+			//Add to total score
     		if($scope.questions[i].selectedAnswer === $scope.questions[i].correct)
     		{
     			$scope.score += 1;
     		}
 		}
 
-		if($scope.allQuestions == false) {
-			alert("Please answer all questions!");
+		if($scope.allQuestions === false) {
+			$scope.failedMessage = "Please answer all questions before submitting.";
 		}
 		else {
-
+		
 		$scope.percentage = $scope.score / $scope.questions.length * 100 ;
 
-			if($scope.percentage > 79.9) 
+			if($scope.percentage >= 50) 
 			{
-				alert("Pass! Write to database")
+				//Save quiz score in the DB under the course node
+				$scope.successMessage = "Congrats you passed!";
+				var user = userService.getUserId();
+				var courseRef = fbRef.getCoursesRef();
+				courseRef.child(courseService.getCategory()).child(courseService.getCourseName()).child("users").child(user).set({
+					score: $scope.percentage
+				});
+			}else {
+				console.log('failed');
+				$scope.failedQuiz = "You failed. Please retake the course.";
 			}
 			//$('html,body').scrollTop(0);
 
+
+			//Scroll page to top after user submits quiz
 			$('html, body').animate({ scrollTop: 0 }, 'slow');
-
-			/*	var courseRef = fbRef.getCoursesRef();
-         		courseRef.once("value", function(snapshot) {
-             	if(snapshot.child(courseService.getCategory()).child(courseService.getCourseName()).child("users").hasChild(authData.uid)) {
-                	 $scope.failedMessage = "User quiz already taken";
-                 	return false;
-             	} else {
-                 courseRef.child(courseService.getCategory()).child(courseService.getCourseName()).child("users").set({
-                     user: percentage
-                 });
-
-                 $scope.successMessage = "Successfully created " + course.name;
-            	 }
-         	});*/
 		}
 	};
 
@@ -92,11 +114,15 @@ function QuizController($scope,$http,$sce,$location) {
 		$location.path('/quiz');
 	};
 
+
+	//Reinitialize variables
 	$scope.restartQuiz = function(){
 		$scope.score = 0;
 		$scope.activeQuestion = -1;
 		$scope.activeQuestionAnswered = 0;
-		$scope.percentage = 0;
+		$scope.percentage = -1;
+		$scope.failedQuiz = undefined;
+		$scope.successMessage = undefined;
 
 		$http.get('../data/quiz_data.json').then(function(quizData){
 			$scope.questions = quizData.data;
@@ -109,14 +135,36 @@ function QuizController($scope,$http,$sce,$location) {
 angular.module('trainingPlatformApp').component('quiz', {
 	templateUrl: '/views/quizView.html',
 	bindings: {
-       courses: '=',
-       hires: '=',
-       general: '=',
-       knowledge: '=',
-       tech: '=',
-       compliance: '='
+       quiz: '=',
      },
-	controller: QuizController
-});
+	controller: QuizCtrl
+}).service('courseService',function($cookies) {
+      /*Stores course information as cookies. Will need to fix this to ensure data isn't lost
+      during refresh*/
+
+      this.getCourseId = function() {
+        return $cookies.get('courseId');
+      };
+
+      this.setCourseId = function(value) {
+        $cookies.put('courseId',value, {expires:new Date(2017, 1, 1)})
+      };
+
+      this.getCategory = function() {
+        return $cookies.get('category');
+      };
+
+      this.setCategory = function(value) {
+        $cookies.put('category',value, {expires:new Date(2017, 1, 1)})
+      };
+
+      this.getCourseName = function() {
+        return $cookies.get('courseName');
+      };
+
+      this.setCourseName = function(value) {
+        $cookies.put('courseName',value,  {expires:new Date(2017, 1, 1)})
+      };
+   });
 	   
 

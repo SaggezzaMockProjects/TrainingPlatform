@@ -17,5 +17,8 @@
   },
   "scripts": {
     "test": "karma start test\\karma.conf.js"
+  },
+  "dependencies": {
+    "angular-confirm": "^1.2.5"
   }
 }

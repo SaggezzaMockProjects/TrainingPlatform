@@ -1,6 +1,6 @@
 .list-group.active{
 	font-weight: 700;
-	
+
 	visibility: visible;
 }
 
@@ -16,7 +16,7 @@
 	font-weight: 700;
 	border: 2px solid rgba(0,0,0,.4);
 	border-radius: 6px;
-		background-color: #000;
+	background-color: #000;
 	color: #fff;
 }
 
@@ -26,7 +26,7 @@
 	border-radius: 6px;
 	background-color: #000033;
 	color: #fff;
-		cursor: pointer;
+	cursor: pointer;
 }
 
 .dashboard.title {

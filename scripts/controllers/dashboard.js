@@ -1,33 +1,23 @@
-'use strict';
-
 /**
  * @name Dashboard.js
  * @description Connects the dasboard view and controller together.
- ******NOT FINISHED*******
  */
+'use strict';
 
-function DashboardCtrl($scope,$http,$sce,$location) {
-  $scope.score = 0;
-  $scope.activeCourse = -1;
-  $scope.activeCourseAnswered = 0;
-  $scope.percentage = 0;
+/**
+ * @name DashboardCtrl
+ * @description Gets the course information from the selected training course
+ */
+function DashboardCtrl($scope,$http,$sce,$location,courseService) {
 
-  $scope.menu = 0;
-  $scope.sectionChosen = -1;
-
-  this.training = function(slideURL,$scope,$location) {
+  //Get the info from course selected and store them in a service
+  $scope.passCourse = function(course,category) {
+    courseService.setCourseName(course.name);
+    courseService.setCourseId(course.code);
+    courseService.setCategory(category);
+    
     $location.path('/course');
-  }
-
-  $scope.passCourse = function(courseName) {
-    $location.path('/course');
-  }
-
-
-  $scope.initCourse = function(InCourseName){
-   $scope.$broadcast("myEvent", {courseName: InCourseName });
   };
-
 }
 
  angular.module('trainingPlatformApp')
@@ -35,11 +25,33 @@ function DashboardCtrl($scope,$http,$sce,$location) {
      templateUrl: '/views/dashboard.html',
      bindings: {
        courses: '=',
-       hires: '=',
-       general: '=',
-       knowledge: '=',
-       tech: '=',
-       compliance: '='
      },
      controller: DashboardCtrl
+   }).service('courseService',function($cookies) {
+      /*Stores course information as cookies. Will need to fix this to ensure data isn't lost
+      during refresh*/
+
+      this.getCourseId = function() {
+        return $cookies.get('courseId');
+      };
+
+      this.setCourseId = function(value) {
+        $cookies.put('courseId',value, {expires:new Date(2017, 1, 1)})
+      };
+
+      this.getCategory = function() {
+        return $cookies.get('category');
+      };
+
+      this.setCategory = function(value) {
+        $cookies.put('category',value, {expires:new Date(2017, 1, 1)})
+      };
+
+      this.getCourseName = function() {
+        return $cookies.get('courseName');
+      };
+
+      this.setCourseName = function(value) {
+        $cookies.put('courseName',value,  {expires:new Date(2017, 1, 1)})
+      };
    });

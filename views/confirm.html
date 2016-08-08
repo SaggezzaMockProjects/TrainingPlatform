@@ -1,0 +1,17 @@
+<!-- Confirmation Dialog View-->
+<html>
+<head>
+    <title> Confirmation </title>
+</head>
+
+<body>
+    <!-- Inject message and name into dialog -->
+    <p>Are you sure you want to {{message}} {{name}}? </p>
+
+    <div class="ngdialog-buttons">
+        <button type="button" class="btn btn-success" ng-click="confirm(confirmValue)">Confirm</button>
+        <button type="button" class="btn btn-danger" ng-click="closeThisDialog()">Cancel</button>
+    </div>
+</body>
+
+</html>

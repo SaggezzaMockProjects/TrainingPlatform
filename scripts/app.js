@@ -1,34 +1,9 @@
 'use strict';
 
 /**
- * !!!!!!!!!!IMPORTANT!!!!!!!!
- * We used firebase as for our realtime cloud database.
- * https://www.firebase.com/
- * AngularFire is the API used to communicate with firebase.
- * https://www.firebase.com/docs/web/libraries/angular/
- * Also used bootstrap for UI.
- * @TODO
- * More advanced form validations/error messages on login, register, and forgot password
- * Update front end
- * Administrator account: <admin>
- *  View all users - SUPER EASY WITH FIREBASE DB
- *    *Remove users
- *    *Add users possibly?
- *    *View user's progress on training
- *  Ability to upload powerpoint slides and categorize them
- *    *Possible use of Google Drive API to view slides directly on website
- * </admin>
- *
- * Users account: <user>
- *  View/complete all trainings which notifies admin that one has been completed
- *  Should limit user's view to only see their specific trainings/Saggezza trainings
- *  Would like to add a profile page
- *  EMAIL CONFIRMATION. There is a 'hack' that could be used with angularfire.
- *  http://andreasmcdermott.com/web/2014/02/05/Email-verification-with-Firebase/
- * </user>
- *
- *
+ * Main application java script file. Handle routes here.
  */
+
 var app = angular
   .module('trainingPlatformApp', [
     'ngAnimate',
@@ -40,77 +15,41 @@ var app = angular
     'ui.router',
     'ngRoute',
     'firebase',
-    'ngDialog'
+    'ngDialog',
+    'ngCookies'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/login', {
         template: '<login current-auth="$resolve.currentAuth"></login>',
         resolve: {
-          //Ensure no refreshing while waiting for database to respond
+          //Ensure nothing changes while waiting for database to respond
           currentAuth: function(auth) {
             return auth.$waitForAuth();
           }
         }
       })
       .when('/', {
-        template: '<dashboard courses="$resolve.courses" hires="$resolve.hires" tech="$resolve.tech" compliance="$resolve.compliance" knowledge="$resolve.knowledge" general="$resolve.general"></dashboard>',
+        template: '<dashboard courses="$resolve.courses"></dashboard>',
         resolve: {
-          //Require authentication before going to this view
+          //Require authentication and gather all the courses
           courses: function(fbRef,$firebaseArray,auth) {
             return auth.$requireAuth().then(function() {
               var query = fbRef.getCoursesRef().orderByChild("name");
-              return $firebaseArray(query).$loaded();
-            });
-          },
-          
-          //New hire courses
-          hires: function(fbRef,$firebaseArray,auth) {
-            return auth.$requireAuth().then(function() {
-              var query = fbRef.getNewHireRef().orderByChild("name");
-              return $firebaseArray(query).$loaded();
-            });
-          },
-
-          //Technical courses
-          tech: function(fbRef,$firebaseArray,auth) {
-            return auth.$requireAuth().then(function() {
-              var query = fbRef.getTechnicalRef().orderByChild("name");
-              return $firebaseArray(query).$loaded();
-            });
-          },
-          
-          //Compliance courses
-          compliance: function(fbRef,$firebaseArray,auth) {
-            return auth.$requireAuth().then(function() {
-              var query = fbRef.getComplianceRef().orderByChild("name");
-              return $firebaseArray(query).$loaded();
-            });
-          },
-
-          //Knowledge Bank Courses
-          knowledge: function(fbRef,$firebaseArray,auth) {
-            return auth.$requireAuth().then(function() {
-              var query = fbRef.GetKnowledgeRef().orderByChild("name");
-              return $firebaseArray(query).$loaded();
-            });
-          },
-          
-          //General Operations Courses
-          general: function(fbRef,$firebaseArray,auth) {
-            return auth.$requireAuth().then(function() {
-              var query = fbRef.getGeneralOpsRef().orderByChild("name");
               return $firebaseArray(query).$loaded();
             });
           }
         }
       })
       .when('/quiz', {
-        template: '<quiz></quiz>',
+        template: '<quiz quiz="$resolve.quiz"></quiz>',
         resolve: {
-          //Require authentication before going to this view
-          currentAuth: function(auth) {
-            return auth.$requireAuth();
+          //Require authentication and gather all the courses
+            quiz: function(fbRef,$firebaseArray,auth,courseService) {
+            return auth.$requireAuth().then(function() {
+              var query = fbRef.getParmFourRef('Courses', courseService.getCategory(), courseService.getCourseName(), 'questions').orderByChild("name");
+              return $firebaseArray(query).$loaded();
+            });
           }
         }
       })
@@ -124,7 +63,32 @@ var app = angular
         }
       })
       .when('/users', {
-        template: '<users></users>',
+        template: '<users users="$resolve.users" courses="$resolve.courses"></users>',
+        resolve: {
+          //Require authentication before going to this view
+          currentAuth: function(auth) {
+            return auth.$requireAuth();
+          },
+
+          //Require authentication and gather all the courses
+          courses: function(fbRef,$firebaseArray,auth) {
+            return auth.$requireAuth().then(function() {
+              var query = fbRef.getCoursesRef().orderByChild("name");
+              return $firebaseArray(query).$loaded();
+            });
+          },
+          
+          //All users
+          users: function(fbRef,$firebaseArray,auth) {
+            return auth.$requireAuth().then(function() {
+              var query = fbRef.getUsersRef().orderByChild("name");
+              return $firebaseArray(query).$loaded();
+            });
+          },
+        }
+      })
+      .when('/profile', {
+        template: '<profile></profile>',
         resolve: {
           //Require authentication before going to this view
           currentAuth: function(auth) {
@@ -132,8 +96,24 @@ var app = angular
           }
         }
       })
-      .when('/profile', {
-        template: '<profile></profile>',
+      .when('/createcourse', {
+        template: '<createcourse courses="$resolve.courses"></createcourse>',
+        resolve: {
+          //Require authentication before going to this view
+          currentAuth: function(auth) {
+            return auth.$requireAuth();
+          },
+           //Require authentication and gather all the courses
+          courses: function(fbRef,$firebaseArray,auth) {
+            return auth.$requireAuth().then(function() {
+              var query = fbRef.getCoursesRef().orderByChild("name");
+              return $firebaseArray(query).$loaded();
+            });
+          }
+        }
+      })
+      .when('/createQuiz', {
+        template: '<createQuiz></createQuiz>',
         resolve: {
           //Require authentication before going to this view
           currentAuth: function(auth) {

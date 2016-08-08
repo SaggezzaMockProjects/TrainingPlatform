@@ -1,13 +1,16 @@
 <!DOCTYPE HTML>
+
+<!-- Course View -->
+
 <html id="course"> 
+
+<!-- Show nav bar on this page-->
 <nav></nav>
+
 <body class = "container">
-	<div>
-		<p align="center"><iframe ng-src="{{source}}" frameborder="0" width="70%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe></p>
-
-		<p align="center"><iframe ng-src="{{source2}}" frameborder="0" width="70%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe></p>
-
-	</div>
+	<h1 align="center">{{name}}</h1>
+	<!--Inject embedded iFrame code-->
+	<div align ="center" ng-bind-html="source"></div>
 	<div class="font" align="center">
 		<p>Once finished with reviewing the course you may start the quiz. 
 		<br><br>

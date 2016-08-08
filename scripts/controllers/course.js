@@ -1,43 +1,23 @@
+/**
+ * @name course.js
+ * @description Controller for the course page. 
+ */
+
 'use strict';
 
-function CourseCtrl($scope, $sce) {
-	$scope.source=$sce.trustAsResourceUrl("https://docs.google.com/a/saggezza.com/presentation/d/1_2cIXepARn3W5tjr9PH6Sw2yfvJHmghL8vF0-7VYglc/embed?start=false&loop=false&delayms=3000");
-
-
-  $scope.source2=$sce.trustAsResourceUrl("https://docs.google.com/a/saggezza.com/presentation/d/13CRp5_Cd3d3hC6Tuz4c6JoCGURR8Df23SJk-Of_55xg/embed?start=false&loop=false&delayms=3000");
-
-$scope.openCourse = function(courseName) {
-    alert("hey");
-    $location.path('#course');
-  };
-
-
-
-
-  $scope.$on("myEvent", function (event, args) {
-   $scope.rest_id = args.courseName;
-   $scope.getMainCategories();
-   alert(args.courseName);
-   $location.path('#course');
-  });
-
-
+/**
+ * @name: CourseCtrl
+ * @description: Controller for the courses. Gets the slide's embed code from Google Drive
+ * and injects it into the course's html code. This function controls the specific training's 
+ * video/powerpoint/etc.
+ */
+function CourseCtrl($scope, $sce,$location,courseService) {
+  $scope.source = $sce.trustAsHtml(courseService.getCourseId());
+  $scope.name = courseService.getCourseName();
 }
-
-
 
 angular.module('trainingPlatformApp')
    .component('course', {
      templateUrl: '/views/course.html',
-
-       bindings: {
-       courses: '=',
-       hires: '=',
-       general: '=',
-       knowledge: '=',
-       tech: '=',
-       compliance: '='
-     },
      controller: CourseCtrl
    });
-
