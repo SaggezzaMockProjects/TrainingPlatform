@@ -21,6 +21,7 @@
 
  /**
   * @name ForgotPasswordCtrl
+  * test
   * @description Resets the user's password and sends a forgot password email 
   */
  function ForgotPasswordCtrl(auth,$location,$scope,ngDialog) {
